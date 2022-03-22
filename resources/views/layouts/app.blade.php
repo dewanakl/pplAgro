@@ -8,26 +8,25 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    {{-- development --}}
+    {{--
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.11.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script> --}}
 </head>
 
-<body class="font-sans antialiased">
+<body>
+    @include('layouts.navigation')
     <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
 
         <!-- Page Heading -->
-        <header class="bg-white shadow">
+        {{-- <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
-        </header>
+        </header> --}}
 
         <!-- Page Content -->
         <main>
