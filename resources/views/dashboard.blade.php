@@ -10,7 +10,9 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in!
-                    {{ Auth::user()->hasRole('admin') ? 'admin' : 'bukan admin' }}
+                    <button class="btn btn-info">Info</button>
+
+                    <p class="p-5 text-danger">{{ Auth::user()->hasRole('admin') ? 'admin' : 'bukan admin' }}</p>
                 </div>
             </div>
         </div>
