@@ -21,6 +21,8 @@
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
+
+    .container>.row>(.col-md-4>.card>.card-header>lorem10^.card-body>lorem10^.card-footer>lorem1)*5
 </body>
 
 </html>

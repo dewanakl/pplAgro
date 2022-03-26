@@ -8,18 +8,19 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {{--
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     {{-- development --}}
-    {{--
+
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.11.1/dist/full.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
     @include('layouts.navigation')
-    <div class="min-h-screen bg-gray-100">
+    {{-- <div class="min-h-screen bg-gray-100"> --}}
 
         <!-- Page Heading -->
         {{-- <header class="bg-white shadow">
@@ -29,10 +30,11 @@
         </header> --}}
 
         <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
+        {{-- <main>
+        </main> --}}
+        {{--
+    </div> --}}
+    {{ $slot }}
 </body>
 
 </html>

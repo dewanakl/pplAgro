@@ -16,17 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->createRole();
+        $this->createAdmin();
+    }
+
+    private function createRole()
+    {
         // create role
-        collect([
-            'admin',
-            'user'
-        ])->each(function ($name) {
+        collect(['admin', 'user'])->each(function ($name) {
             Role::create([
                 'name' => $name
             ]);
         });
+    }
 
-        // auto insert admin
+    private function createAdmin()
+    {
+        // insert admin
         User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
