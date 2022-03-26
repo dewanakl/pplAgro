@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Profile') }}
         </h2>
     </x-slot>
     <div class="h-screen drawer drawer-mobile w-full">
@@ -14,24 +14,12 @@
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            You're logged in!
-                            <button class="btn btn-info">Info</button>
-
-                            <p class="p-5 text-danger">{{ Auth::user()->hasRole('admin') ? 'admin' : 'bukan admin' }}
-                            </p>
+                            <p> {{ $user->name }}</p>
+                            <p> {{ $user->email }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="drawer-side">
-            <label for="my-drawer-2" class="drawer-overlay"></label>
-            <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                <!-- Sidebar content here -->
-                <li><a>Sidebar Item 1</a></li>
-                <li><a>Sidebar Item 2</a></li>
-            </ul>
-
         </div>
     </div>
 </x-app-layout>
