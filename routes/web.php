@@ -19,7 +19,7 @@ require __DIR__ . '/auth.php';
 
 // we're here
 Route::get('/', function () {
-    return view('welcome');
+    return view('example');
 });
 
 Route::middleware('auth')->group(function () {
