@@ -4,15 +4,12 @@
             <i class="fas fa-leaf"></i>
         </div>
     </a>
-
-    <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+    <li class="nav-item {{ (Route::current()->uri == 'dashboard') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span>
+        </a>
     </li>
 
     <!-- Divider -->

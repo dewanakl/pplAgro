@@ -6,9 +6,9 @@
         </ol>
     </nav>
     <h3 class="h3 mb-4 text-gray-800">we're here</h3>
-    <p class="p-5 text-danger">{{ Auth::user()->hasRole('admin') ? 'admin' : 'bukan admin' }}</p>
+    <p class="text-danger">{{ Auth::user()->hasRole('owner') ? 'adalah owner' : 'bukan owner' }}</p>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -25,5 +25,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>

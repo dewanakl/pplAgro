@@ -19,7 +19,7 @@ require __DIR__ . '/auth.php';
 
 // we're here
 Route::get('/', function () {
-    return view('example');
+    return view('welcome');
 });
 
 Route::middleware('auth')->group(function () {
@@ -32,17 +32,17 @@ Route::middleware('auth')->group(function () {
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-    // admin
-    Route::middleware('role:admin')->group(function () {
-        Route::get('/admin', function () {
-            return 'admin';
+    // owner
+    Route::middleware('role:owner')->group(function () {
+        Route::get('/owner', function () {
+            return 'owner';
         })->name('admin.page');
     });
 
-    // user
-    Route::middleware('role:user')->group(function () {
-        Route::get('/user', function () {
-            return 'user';
+    // agen
+    Route::middleware('role:agen')->group(function () {
+        Route::get('/agen', function () {
+            return 'agen';
         })->name('user.page');
     });
 });
