@@ -34,10 +34,10 @@ class DatabaseSeeder extends Seeder
     {
         // insert owner
         User::create([
-            'name' => 'owner',
-            'email' => 'owner@owner.com',
+            'name' => 'Andriyanto',
+            'email' => 'andriyanto@owner.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('ownerowner'),
+            'password' => Hash::make('andriyantoowner'),
         ])->assignRole('owner');
     }
 }
