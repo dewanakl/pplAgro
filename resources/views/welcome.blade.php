@@ -34,7 +34,11 @@
                         <a class="nav-link" href="#alamat">Alamat</a>
                     </li>
                 </ul>
+                @auth
+                <a class="btn btn-outline-success" href="{{ route('dashboard') }}">Dashboard</a>
+                @else
                 <a class="btn btn-outline-primary" href="{{ route('login') }}">Login</a>
+                @endauth
             </div>
         </div>
     </nav>

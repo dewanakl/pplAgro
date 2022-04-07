@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 // we're here
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
@@ -33,18 +33,16 @@ Route::middleware('auth')->group(function () {
 
     // owner
     Route::middleware('role:owner')->group(function () {
-        // Route::get('/owner', function () {
-        //     return 'owner';
-        // })->name('admin.page');
 
         Route::resource('agen', AgenController::class);
+        Route::get('/keuangan', fn () => 'keuangan page')->name('keuangan');
+        Route::get('/bahanbaku', fn () => 'bahanbaku page')->name('bahanbaku');
     });
 
     // agen
     Route::middleware('role:agen')->group(function () {
-        // Route::get('/agen', function () {
-        //     return 'agen';
-        // })->name('user.page');
+
         Route::view('/tes', 'agen.index')->name('tes');
+        Route::get('/pesanan', fn () => 'pesanan page')->name('pesanan');
     });
 });

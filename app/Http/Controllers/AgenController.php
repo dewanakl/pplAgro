@@ -24,8 +24,9 @@ class AgenController extends Controller
             'email' => ['required', 'unique:users,email', 'email'],
             'password' => ['required', 'min:8'],
         ]);
+
         User::create($result)->assignRole('agen');
 
-        return back('agen');
+        return redirect('/agen');
     }
 }

@@ -26,19 +26,19 @@
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 5px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #fff;
+            background: #eee;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgb(117, 173, 136);
+            background: #2C3A47;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgb(32, 73, 39);
+            background: #555;
         }
     </style>
     @yield('styles')
@@ -47,8 +47,8 @@
 <body>
     {{ $slot }}
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     @yield('scripts')
 </body>

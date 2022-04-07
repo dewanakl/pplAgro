@@ -1,5 +1,5 @@
 <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion toggled" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('welcome') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-leaf"></i>
         </div>
@@ -11,25 +11,42 @@
             <span>Dashboard</span>
         </a>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-        Agen
-    </div>
+    <hr class="sidebar-divider my-0">
+    @role('owner')
     <li class="nav-item {{ (Route::current()->uri == 'agen') ? 'active' : null }}">
         <a class="nav-link" href="{{ route('agen.index') }}">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-fw fa-users"></i>
             <span>Agen</span>
         </a>
     </li>
-
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">
-        Interface
-    </div>
-    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item {{ (Route::current()->uri == 'pesanan') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('pesanan') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Pesanan</span>
+        </a>
+    </li>
+    <li class="nav-item {{ (Route::current()->uri == 'keuangan') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('keuangan') }}">
+            <i class="fas fa-fw fa-dollar-sign"></i>
+            <span>Keuangan</span>
+        </a>
+    </li>
+    <li class="nav-item {{ (Route::current()->uri == 'bahanbaku') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('bahanbaku') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Bahan Baku</span>
+        </a>
+    </li>
+    @else
+    <li class="nav-item {{ (Route::current()->uri == 'pesanan') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('pesanan') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Pesanan</span>
+        </a>
+    </li>
+    @endrole
+    <hr class="sidebar-divider d-none d-md-block">
+    {{-- <div class="sidebar-heading">Interface</div>
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
             aria-controls="collapseTwo">
@@ -43,18 +60,5 @@
                 <a class="collapse-item" href="cards.html">Cards</a>
             </div>
         </div>
-    </li>
-
-
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
+    </li> --}}
 </ul>
