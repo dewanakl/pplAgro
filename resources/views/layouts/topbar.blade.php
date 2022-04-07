@@ -3,8 +3,6 @@
         <i class="fa fa-bars text-success"></i>
     </button>
     <span class="d-none d-md-block mx-1" style="color: black;">Nama App</span>
-
-    <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle text-dark" href="#" id="alertsDropdown" role="button"
@@ -53,13 +51,11 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
             </div>
         </li>
-
         <div class="topbar-divider d-none d-sm-block"></div>
-
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-lg-inline text-gray-800 small">{{ Auth::user()->name }}</span>
+                <span class="mr-2 d-lg-inline text-dark">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
             </a>
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

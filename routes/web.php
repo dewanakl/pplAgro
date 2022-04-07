@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AgenController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,31 +21,30 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 // we're here
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
 
 Route::middleware('auth')->group(function () {
 
     // dashboard
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
     // owner
     Route::middleware('role:owner')->group(function () {
-        Route::get('/owner', function () {
-            return 'owner';
-        })->name('admin.page');
+        // Route::get('/owner', function () {
+        //     return 'owner';
+        // })->name('admin.page');
+
+        Route::resource('agen', AgenController::class);
     });
 
     // agen
     Route::middleware('role:agen')->group(function () {
-        Route::get('/agen', function () {
-            return 'agen';
-        })->name('user.page');
+        // Route::get('/agen', function () {
+        //     return 'agen';
+        // })->name('user.page');
+        Route::view('/tes', 'agen.index')->name('tes');
     });
 });

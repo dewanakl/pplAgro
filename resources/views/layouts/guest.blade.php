@@ -18,8 +18,8 @@
     <meta name="og:type" property="og:type" content="website">
     <meta name="og:url" property="og:url" content="{{ env('APP_URL') }}">
     <title>{{ $title }}</title>
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style>
         body {
             overflow: overlay;
@@ -46,10 +46,10 @@
 
 <body>
     {{ $slot }}
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
     @yield('scripts')
 </body>
 

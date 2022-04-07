@@ -6,7 +6,7 @@
         </ol>
     </nav>
     <h3 class="h3 mb-4 text-gray-800">we're here</h3>
-    <p class="text-danger">{{ Auth::user()->hasRole('owner') ? 'adalah owner' : 'bukan owner' }}</p>
+    <h4 class="text-danger">{{ Auth::user()->hasRole('owner') ? 'adalah owner' : 'bukan owner' }}</h4>
 
     {{-- <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">

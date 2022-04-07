@@ -5,21 +5,30 @@
         </div>
     </a>
     <hr class="sidebar-divider my-0">
-
     <li class="nav-item {{ (Route::current()->uri == 'dashboard') ? 'active' : null }}">
         <a class="nav-link" href="{{ route('dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span>
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
         </a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Agen
+    </div>
+    <li class="nav-item {{ (Route::current()->uri == 'agen') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('agen.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Agen</span>
+        </a>
+    </li>
 
-    <!-- Heading -->
+    <hr class="sidebar-divider">
+
     <div class="sidebar-heading">
         Interface
     </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
@@ -36,20 +45,7 @@
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-    </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
