@@ -12,4 +12,26 @@ class ProfileController extends Controller
     {
         return view('profile.index', ['user' => User::find(Auth::user()->id)]);
     }
+
+    public function update(Request $request)
+    {
+        $result = $request->validate([
+            'name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email'],
+        ]);
+
+        User::find(Auth::user()->id)->update($result);
+
+        if (isset($request->newpass) && isset($request->confnewpass)) {
+            $request->validate([
+                'newpass' => ['min:7', 'required_with:confnewpass', 'same:confnewpass'],
+                'confnewpass' => ['min:7']
+            ]);
+            User::find(Auth::user()->id)->update([
+                'password' => $request->confnewpass
+            ]);
+        }
+
+        return redirect('/profile')->with('success', 'Berhasil mengupdate akun');
+    }
 }

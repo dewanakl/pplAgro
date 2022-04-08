@@ -19,8 +19,8 @@
             <span>Agen</span>
         </a>
     </li>
-    <li class="nav-item {{ (Route::current()->uri == 'pesanan') ? 'active' : null }}">
-        <a class="nav-link" href="{{ route('pesanan') }}">
+    <li class="nav-item {{ (Route::current()->uri == 'ownerpesanan') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('owner.pesanan') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Pesanan</span>
         </a>
@@ -38,8 +38,8 @@
         </a>
     </li>
     @else
-    <li class="nav-item {{ (Route::current()->uri == 'pesanan') ? 'active' : null }}">
-        <a class="nav-link" href="{{ route('pesanan') }}">
+    <li class="nav-item {{ (Route::current()->uri == 'agenpesanan') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('agen.pesanan') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Pesanan</span>
         </a>

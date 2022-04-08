@@ -1,3 +1,3 @@
 <x-app-layout>
-    <h2>pesanan</h2>
+    <h2>pesanan agen</h2>
 </x-app-layout>
