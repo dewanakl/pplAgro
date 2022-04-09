@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Andriyanto',
             'email' => 'andriyanto@owner.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('andriyantoowner'),
+            'password' => 'andriyantoowner',
         ])->assignRole('owner');
     }
 }
