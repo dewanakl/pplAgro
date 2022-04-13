@@ -63,10 +63,7 @@
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutmodal">Logout ?</h5>
-                </div>
-                <div class="modal-body">Pilih Logout jika anda ingin keluar</div>
+                <div class="modal-body"><strong>Apakah anda yakin ingin logout?</strong></div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
                     <form method="POST" action="{{ route('logout') }}">

@@ -21,6 +21,7 @@ class AgenController extends Controller
     {
         $result = $request->validate([
             'name' => ['required', 'string', 'min:3'],
+            'nohp' => ['required', 'string', 'min:3'],
             'email' => ['required', 'unique:users,email', 'email'],
             'password' => ['required', 'min:8'],
         ]);
