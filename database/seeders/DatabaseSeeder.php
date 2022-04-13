@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Andriyanto',
             'email' => 'andriyanto@owner.com',
+            'nohp' => '085432149322',
             'email_verified_at' => now(),
             'password' => 'andriyantoowner',
         ])->assignRole('owner');
