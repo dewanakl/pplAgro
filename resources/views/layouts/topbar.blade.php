@@ -2,7 +2,7 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars text-success"></i>
     </button>
-    <span class="d-none d-md-block mx-1" style="color: black;">Nama App</span>
+    <span class="d-none d-md-block mx-1" style="color: black;">Thempe.id</span>
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown no-arrow mx-1">
             <a class="nav-link dropdown-toggle text-dark" href="#" id="alertsDropdown" role="button"
