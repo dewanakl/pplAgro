@@ -9,12 +9,12 @@ class AgenController extends Controller
 {
     public function index()
     {
-        return view('owner.index', ['agens' => User::role('agen')->get()]);
+        return view('owner.agen.index', ['agens' => User::role('agen')->get()]);
     }
 
     public function create()
     {
-        return view('owner.create');
+        return view('owner.agen.create');
     }
 
     public function store(Request $request)
@@ -28,6 +28,6 @@ class AgenController extends Controller
 
         User::create($result)->assignRole('agen');
 
-        return redirect('/agen');
+        return redirect('/agen')->with('success', 'Berhasil menambahkan agen');
     }
 }

@@ -13,10 +13,16 @@ class ProfileController extends Controller
         return view('profile.index', ['user' => User::find(Auth::user()->id)]);
     }
 
+    public function edit()
+    {
+        return view('profile.edit', ['user' => User::find(Auth::user()->id)]);
+    }
+
     public function update(Request $request)
     {
         $result = $request->validate([
             'name' => ['required', 'string', 'min:3'],
+            'nohp' => ['required', 'string', 'min:3'],
             'email' => ['required', 'email'],
         ]);
 

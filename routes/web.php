@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function () {
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::put('/profile', [ProfileController::class, 'update']);
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
     // owner
     Route::middleware('role:owner')->group(function () {

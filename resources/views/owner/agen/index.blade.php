@@ -6,6 +6,10 @@
         </ol>
     </nav>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success" role="alert">{{ session()->get('success') }}</div>
+    @endif
+
     <!-- Page Heading -->
     <div class="d-flex justify-content-between mb-2">
         <div>
@@ -16,7 +20,7 @@
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-circle"></i>
                 </span>
-                <span class="d-none d-md-block text">Pengguna</span>
+                <span class="d-none d-md-block text">Agen</span>
             </a>
         </div>
     </div>
@@ -24,7 +28,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Tabel Agen</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Daftar Agen</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,14 +37,16 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>No HP</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($agens as $agen)
                         <tr>
-                            <td>{{ $agen->name}}</td>
-                            <td>{{ $agen->email}}</td>
+                            <td>{{ $agen->name }}</td>
+                            <td>{{ $agen->email }}</td>
+                            <td>{{ $agen->nohp }}</td>
                             <td>
                                 <a href="#" class="btn btn-warning btn-circle m-1">
                                     <i class="fas fa-edit"></i>
