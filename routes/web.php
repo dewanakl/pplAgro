@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\AgenController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 // we're here
-Route::view('/', 'welcome')->name('welcome');
+Route::view('/', 'welcome', [
+    'data' => User::role('owner')->find(1)
+])->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
