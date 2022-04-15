@@ -46,14 +46,16 @@
     <div class="container">
         <div class="row py-4 align-items-center">
             <div class="col-md-6 ">
-                <h1>Welcome to <span class="text-primary">My website</span> </h1>
-                <p class="mt-5 lh-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, explicabo cum
-                    dignissimos iste quos est quibusdam architecto labore neque rerum tempore temporibus magni corporis
-                    beatae ea libero, accusantium asperiores. Voluptate!</p>
+                <h1>Thempe.id</h1>
+                <p class="mt-4 h5 text-dark">
+                    Tempe adalah makanan khas Indonesia yang terbuat dari fermentasi kedelai. Sediaan fermentasi ini
+                    secara umum dikenal sebagai "ragi tempe".
+                </p>
+                <small>wikipedia</small>
             </div>
             <div class="col-md-6 text-end d-md-block d-none">
-                <img src="http://pbw.ilkom.unej.ac.id/ifc/ifc202410103028/Pertemuan%203/images/viewer.png" alt="none"
-                    width="500">
+                <img src="https://static.vecteezy.com/system/resources/previews/003/795/506/original/tempe-is-indonesian-traditional-food-vector.jpg"
+                    alt="none" width="500">
             </div>
         </div>
         <!--Google map-->

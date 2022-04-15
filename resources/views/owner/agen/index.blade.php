@@ -1,4 +1,7 @@
 <x-app-layout title="Profile">
+    @section('styles')
+    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    @endsection
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -48,12 +51,15 @@
                             <td>{{ $agen->email }}</td>
                             <td>{{ $agen->nohp }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning btn-circle m-1">
+                                <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-success btn-circle m-1">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ route('agen.edit', $agen->id) }}" class="btn btn-warning btn-circle m-1">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-circle m-1">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                                <a href="javascript:;" class="btn btn-danger btn-circle m-1 addAttr"
+                                    data-nama="{{ $agen->name }}" data-url="{{ route('agen.destroy', $agen->id) }}"><i
+                                        class="fas fa-trash"></i></button></a>
                             </td>
                         </tr>
                         @endforeach
@@ -63,10 +69,41 @@
         </div>
     </div>
 
+    <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Apakah anda yakin ingin manghapus ?</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" value="" id="nama" disabled>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                    <form method="POST" action="" id="deleteform">
+                        @method('delete')
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     @section('scripts')
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
+        });
+
+        $('.addAttr').click(function() {
+            var nama = $(this).attr('data-nama');
+            var url = $(this).attr('data-url');
+            $('#nama').val(nama);
+            $('#deleteform').attr('action', url);
+            $('#hapusModal').modal('show');
         });
     </script>
     @endsection

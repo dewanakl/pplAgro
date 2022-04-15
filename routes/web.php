@@ -36,7 +36,9 @@ Route::middleware('auth')->group(function () {
     // owner
     Route::middleware('role:owner')->group(function () {
 
+        //Route::get('/agen/{id}/edit', [AgenController::class, 'edit'])->name('agen.edit');
         Route::resource('agen', AgenController::class);
+
         Route::get('/keuangan', fn () => view('owner.keuangan.index'))->name('keuangan');
         Route::get('/bahanbaku', fn () => view('owner.bahanbaku.index'))->name('bahanbaku');
         Route::get('/ownerpesanan', fn () => view('owner.pesanan.index'))->name('owner.pesanan');

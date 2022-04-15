@@ -17,6 +17,39 @@ class AgenController extends Controller
         return view('owner.agen.create');
     }
 
+    public function show($id)
+    {
+        return view('owner.agen.show', ['agen' => User::role('agen')->find($id)]);
+    }
+
+    public function edit($id)
+    {
+        return view('owner.agen.edit', ['agen' => User::role('agen')->find($id)]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $result = $request->validate([
+            'name' => ['required', 'string', 'min:3'],
+            'nohp' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email'],
+        ]);
+
+        User::role('agen')->find($id)->update($result);
+
+        if (isset($request->newpass) && isset($request->confnewpass)) {
+            $request->validate([
+                'newpass' => ['min:7', 'required_with:confnewpass', 'same:confnewpass'],
+                'confnewpass' => ['min:7']
+            ]);
+            User::role('agen')->find($id)->update([
+                'password' => $request->confnewpass
+            ]);
+        }
+
+        return redirect('/agen')->with('success', 'Berhasil mengupdate agen');
+    }
+
     public function store(Request $request)
     {
         $result = $request->validate([
@@ -29,5 +62,11 @@ class AgenController extends Controller
         User::create($result)->assignRole('agen');
 
         return redirect('/agen')->with('success', 'Berhasil menambahkan agen');
+    }
+
+    public function destroy($id)
+    {
+        User::role('agen')->find($id)->delete();
+        return redirect('/agen')->with('success', 'Berhasil menghapus agen');
     }
 }
