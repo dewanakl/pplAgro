@@ -73,7 +73,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Apakah anda yakin ingin manghapus ?</h5>
+                    <div class="modal-title">Apakah anda yakin ingin manghapus ?</div>
                 </div>
                 <div class="modal-body">
                     <input type="text" class="form-control" value="" id="nama" disabled>
