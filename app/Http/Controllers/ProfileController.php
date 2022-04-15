@@ -23,6 +23,7 @@ class ProfileController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'min:3'],
             'nohp' => ['required', 'string', 'min:3'],
+            'alamat' => ['nullable', 'string', 'min:3'],
             'email' => ['required', 'email'],
         ]);
 

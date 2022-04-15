@@ -59,6 +59,19 @@
                             </div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="alamat">
+                                <i class="fas fa-location-arrow"></i>
+                                Alamat :
+                            </label>
+                            <input type="text" placeholder="alamat" class="form-control" name="alamat"
+                                value="{{ $user->alamat }}">
+                            @error('alamat')
+                            <div class="text-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="email">

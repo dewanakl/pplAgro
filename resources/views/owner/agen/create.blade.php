@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Tambah Agen">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -50,6 +50,19 @@
                                 value="{{ old('nohp') }}" placeholder="No HP" required>
                             @error('nohp')
                             <span class="invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">
+                                <i class="fas fa-location-arrow"></i>
+                                Alamat :
+                            </label>
+                            <input type="text" placeholder="alamat" class="form-control" name="alamat"
+                                value="{{ old('alamat') }}">
+                            @error('alamat')
+                            <div class="text-danger mt-2">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
                         <div class="form-group">

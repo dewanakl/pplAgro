@@ -9,7 +9,7 @@ class AgenController extends Controller
 {
     public function index()
     {
-        return view('owner.agen.index', ['agens' => User::role('agen')->get()]);
+        return view('owner.agen.index', ['agens' => User::role('agen')->orderBy('id', 'ASC')->get()]);
     }
 
     public function create()
@@ -32,6 +32,7 @@ class AgenController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'min:3'],
             'nohp' => ['required', 'string', 'min:3'],
+            'alamat' => ['nullable', 'string', 'min:3'],
             'email' => ['required', 'email'],
         ]);
 
@@ -55,6 +56,7 @@ class AgenController extends Controller
         $result = $request->validate([
             'name' => ['required', 'string', 'min:3'],
             'nohp' => ['required', 'string', 'min:3'],
+            'alamat' => ['nullable', 'string', 'min:3'],
             'email' => ['required', 'unique:users,email', 'email'],
             'password' => ['required', 'min:8'],
         ]);

@@ -57,10 +57,19 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">
-                                            <i class="fas fa-user-plus"></i>
-                                            Tanggal Daftar
+                                            <i class="fas fa-location-arrow"></i>
+                                            Alamat
                                         </p>
-                                        <h6 class="text-muted f-w-400">{{ $agen->created_at->diffForHumans() }}</h6>
+                                        <h6 class="text-muted f-w-400">
+                                            @isset($agen->alamat)
+                                            <a href="https://www.google.com/maps/place/{{ $agen->alamat }}"
+                                                target="_blank" rel="noopener noreferrer">
+                                                {{ $agen->alamat }}
+                                            </a>
+                                            @else
+                                            {{ 'Silahkan isi alamat untuk bertransaksi' }}
+                                            @endisset
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

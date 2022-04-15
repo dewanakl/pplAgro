@@ -30,7 +30,7 @@
                 <div class="card">
                     <div class="row no-gutters m-l-0 m-r-0">
                         <div class="col-sm-4">
-                            <img src="img/undraw_profile.svg" class="img-profile rounded-circle" width="310">
+                            <img src="img/undraw_profile.svg" class="img-profile rounded-circle" width="300">
                         </div>
                         <div class="col-sm-8">
                             <div class="card-body">
@@ -66,11 +66,19 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">
-                                            <i class="fas fa-user-plus"></i>
-                                            Role
+                                            <i class="fas fa-location-arrow"></i>
+                                            Alamat
                                         </p>
                                         <h6 class="text-muted f-w-400">
-                                            {{ Auth::user()->hasRole('owner') ? 'Owner' : 'Agen' }}</h6>
+                                            @isset($user->alamat)
+                                            <a href="https://www.google.com/maps/place/{{ $user->alamat }}"
+                                                target="_blank" rel="noopener noreferrer">
+                                                {{ $user->alamat }}
+                                            </a>
+                                            @else
+                                            {{ 'Silahkan isi alamat untuk bertransaksi' }}
+                                            @endisset
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

@@ -44,6 +44,12 @@
             <span>Pesanan</span>
         </a>
     </li>
+    <li class="nav-item {{ (Route::current()->uri == 'pembayaran') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('agen.pembayaran') }}">
+            <i class="fas fa-fw fa-dollar-sign"></i>
+            <span>Pembayaran</span>
+        </a>
+    </li>
     @endrole
     <hr class="sidebar-divider d-none d-md-block">
     {{-- <div class="sidebar-heading">Interface</div>

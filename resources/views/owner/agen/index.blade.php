@@ -1,4 +1,4 @@
-<x-app-layout title="Profile">
+<x-app-layout title="Agen">
     @section('styles')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     @endsection
@@ -38,6 +38,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>No HP</th>
@@ -45,12 +46,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($agens as $agen)
+                        @foreach ($agens as $idx => $agen)
                         <tr>
+                            <td>{{ $idx + 1 }}</td>
                             <td>{{ $agen->name }}</td>
                             <td>{{ $agen->email }}</td>
                             <td>{{ $agen->nohp }}</td>
                             <td>
+                                @isset($agen->alamat)
+                                <a href="https://www.google.com/maps/place/{{ $agen->alamat }}"
+                                    class="btn btn-primary btn-circle m-1" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-location-arrow"></i>
+                                </a>
+                                @endisset
                                 <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-success btn-circle m-1">
                                     <i class="fas fa-eye"></i>
                                 </a>
@@ -58,8 +66,9 @@
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <a href="javascript:;" class="btn btn-danger btn-circle m-1 addAttr"
-                                    data-nama="{{ $agen->name }}" data-url="{{ route('agen.destroy', $agen->id) }}"><i
-                                        class="fas fa-trash"></i></button></a>
+                                    data-nama="{{ $agen->name }}" data-url="{{ route('agen.destroy', $agen->id) }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach
