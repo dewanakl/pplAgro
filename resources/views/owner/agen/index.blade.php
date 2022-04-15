@@ -2,6 +2,7 @@
     @section('styles')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     @endsection
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -53,14 +54,8 @@
                             <td>{{ $agen->email }}</td>
                             <td>{{ $agen->nohp }}</td>
                             <td>
-                                @isset($agen->alamat)
-                                <a href="https://www.google.com/maps/place/{{ $agen->alamat }}"
-                                    class="btn btn-primary btn-circle m-1" target="_blank" rel="noopener noreferrer">
+                                <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-primary btn-circle m-1">
                                     <i class="fas fa-location-arrow"></i>
-                                </a>
-                                @endisset
-                                <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-success btn-circle m-1">
-                                    <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="{{ route('agen.edit', $agen->id) }}" class="btn btn-warning btn-circle m-1">
                                     <i class="fas fa-edit"></i>

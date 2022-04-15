@@ -1,4 +1,25 @@
 <x-app-layout title="Lihat Agen">
+    @isset($agen->alamat)
+    @section('styles')
+    <style>
+        .map-container {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+
+        .map-container iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+    @endsection
+    @endisset
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
@@ -44,7 +65,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"><strong>More Information</strong>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"><strong>Informasi Lanjut</strong>
                                 </h6>
                                 <hr>
                                 <div class="row">
@@ -79,5 +100,10 @@
             </div>
         </div>
     </div>
-
+    @isset($agen->alamat)
+    <div id="map-container-google-1" class="z-depth-1-half map-container mb-4" style="height: 500px">
+        <iframe src="https://maps.google.com/maps?q={{ $agen->alamat }}&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    @endisset
 </x-app-layout>
