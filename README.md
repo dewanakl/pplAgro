@@ -1,15 +1,14 @@
 ## About pplAgro
 
-Repository matakuliah pplAgro dengan dibantu framework laravel dan bootstrap
-mitra ...
+Repository matakuliah pplAgro dibantu framework laravel dan bootstrap
 
 ## How to run ?
 
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- php artisan migrate --seed
+- php artisan serve
 
 ## License
 
