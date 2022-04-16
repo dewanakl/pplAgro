@@ -5,7 +5,7 @@
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
     </nav>
-    <h3 class="h3 mb-4 text-gray-800">we're here</h3>
+
     <h4 class="text-danger">{{ Auth::user()->hasRole('owner') ? 'Owner' : 'Agen' }}</h4>
 
     {{-- <div class="row">

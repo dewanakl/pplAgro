@@ -71,8 +71,8 @@
                                         </p>
                                         <h6 class="text-muted f-w-400">
                                             @isset($user->alamat)
-                                            <a href="https://www.google.com/maps/place/{{ $user->alamat }}"
-                                                target="_blank" rel="noopener noreferrer">
+                                            <a href="https://maps.google.com/maps?q={{ $user->alamat }}" target="_blank"
+                                                rel="noopener noreferrer">
                                                 {{ $user->alamat }}
                                             </a>
                                             @else

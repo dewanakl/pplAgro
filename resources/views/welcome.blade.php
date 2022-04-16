@@ -61,8 +61,8 @@
         <!--Google map-->
         <h3 class="text-dark" id="alamat">Lokasi kami</h3>
         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-            <iframe src="https://maps.google.com/maps?q={{ $data->alamat }}&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://maps.google.com/maps?q={{ $data->alamat }}&ie=UTF8&output=embed" frameborder="0"
+                style="border:0" allowfullscreen></iframe>
         </div>
         <!--Google Maps-->
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
