@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ route('profile') }}" class="btn btn-sm btn-secondary">
+                            <a href="{{ route('agen.index') }}" class="btn btn-sm btn-secondary">
                                 <i class="fas fa-arrow-left"></i>
                                 Batal
                             </a>
