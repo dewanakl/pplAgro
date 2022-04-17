@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AgenController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 // we're here
-Route::view('/', 'welcome', [
-    'data' => User::role('owner')->find(1)
-])->name('welcome');
+Route::get('/', LandingController::class)->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
@@ -31,24 +29,23 @@ Route::middleware('auth')->group(function () {
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     // owner
     Route::middleware('role:owner')->group(function () {
 
         Route::resource('agen', AgenController::class);
 
-        Route::get('/keuangan', fn () => view('owner.keuangan.index'))->name('keuangan');
-        Route::get('/bahanbaku', fn () => view('owner.bahanbaku.index'))->name('bahanbaku');
-        Route::get('/ownerpesanan', fn () => view('owner.pesanan.index'))->name('owner.pesanan');
+        Route::view('/keuangan', 'owner.keuangan.index')->name('keuangan');
+        Route::view('/bahanbaku', 'owner.bahanbaku.index')->name('bahanbaku');
+        Route::view('/ownerpesanan', 'owner.pesanan.index')->name('owner.pesanan');
     });
 
     // agen
     Route::middleware('role:agen')->group(function () {
 
-        Route::view('/tes', 'agen.index')->name('tes');
-        Route::get('/agenpesanan', fn () => view('agen.pesanan'))->name('agen.pesanan');
-        Route::get('/pembayaran', fn () => view('agen.pembayaran'))->name('agen.pembayaran');
+        Route::view('/agenpesanan', 'agen.pesanan')->name('agen.pesanan');
+        Route::view('/pembayaran', 'agen.pembayaran')->name('agen.pembayaran');
     });
 });
