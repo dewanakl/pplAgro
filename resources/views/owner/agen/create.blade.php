@@ -25,7 +25,7 @@
                                 Nama :
                             </label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" placeholder="Nama" required>
+                                value="{{ old('name') }}" placeholder="Nama">
                             @error('name')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -36,7 +36,7 @@
                                 Email :
                             </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{  old('email') }}" placeholder="Email" required>
+                                value="{{  old('email') }}" placeholder="Email">
                             @error('email')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -47,7 +47,7 @@
                                 No HP :
                             </label>
                             <input type="number" class="form-control @error('nohp') is-invalid @enderror" name="nohp"
-                                value="{{ old('nohp') }}" placeholder="No HP" required>
+                                value="{{ old('nohp') }}" placeholder="No HP">
                             @error('nohp')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -71,7 +71,7 @@
                                 Password :
                             </label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" value="{{ old('password') }}" placeholder="Password" required>
+                                name="password" value="{{ old('password') }}" placeholder="Password">
                             @error('password')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -83,7 +83,7 @@
                             </a>
                             <button type="submit" class="btn btn-sm btn-primary" id="action">
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
-                                Save
+                                Kirim
                             </button>
                         </div>
                     </form>

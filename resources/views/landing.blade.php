@@ -62,12 +62,12 @@
             </div>
         </div>
 
-        <section class="mb-4" id="kontak">
+        {{-- <section class="mb-4" id="kontak">
             <div class="p-3 rounded mt-4 mb-4 bg-light">
                 <h3 class="text-dark text-center">Kontak Kami</h3>
                 <h5 class="text-dark text-center">{{ $data->name }} | {{ $data->nohp }}</h5>
             </div>
-        </section>
+        </section> --}}
 
         <section class="mb-4" id="alamat">
             <div class="row justify-content-center">

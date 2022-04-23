@@ -26,7 +26,7 @@
                                 Nama :
                             </label>
                             <input type="text" placeholder="Nama" class="form-control" name="name"
-                                value="{{ $agen->name }}" required>
+                                value="{{ $agen->name }}">
                             @error('name')
                             <div class="text-danger mt-2">
                                 {{ $message }}
@@ -39,7 +39,7 @@
                                 Email :
                             </label>
                             <input type="text" placeholder="Email" class="form-control" name="email"
-                                value="{{ $agen->email }}" required>
+                                value="{{ $agen->email }}">
                             @error('email')
                             <div class="text-danger mt-2">
                                 {{ $message }}
@@ -52,7 +52,7 @@
                                 No HP :
                             </label>
                             <input type="text" placeholder="nohp" class="form-control" name="nohp"
-                                value="{{ $agen->nohp }}" required>
+                                value="{{ $agen->nohp }}">
                             @error('nohp')
                             <div class="text-danger mt-2">
                                 {{ $message }}

@@ -25,7 +25,7 @@ Route::get('/', LandingController::class)->name('welcome');
 Route::middleware('auth')->group(function () {
 
     // dashboard
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::view('/dashboard', 'halamanUtama')->name('dashboard');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

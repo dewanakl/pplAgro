@@ -1,14 +1,14 @@
 <x-app-layout title="Profile">
+    @section('styles')
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+    @endsection
+
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Profile</li>
         </ol>
     </nav>
-
-    @if (session()->has('success'))
-    <div class="alert alert-success" role="alert">{{ session()->get('success') }}</div>
-    @endif
 
     <div class="d-flex justify-content-between mb-2">
         <div>
@@ -89,4 +89,13 @@
         </div>
     </div>
 
+    @section('scripts')
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    @if (session()->has('success'))
+    <script>
+        const title = "<?= session()->get('success') ?>";
+        swal({title: title, text: "", type: "success"});
+    </script>
+    @endif
+    @endsection
 </x-app-layout>

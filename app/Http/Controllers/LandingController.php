@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class LandingController extends Controller
 {
     public function __invoke()
     {
-        return view('landing', ['data' => User::role('owner')->find(1)]);
+        return view('landing', ['data' => DB::table('pabriks')->find(1)]);
     }
 }

@@ -26,7 +26,7 @@
                                 Nama :
                             </label>
                             <input type="text" placeholder="Nama" class="form-control" name="name"
-                                value="{{ $user->name }}" required>
+                                value="{{ $user->name }}">
                             @error('name')
                             <div class="text-danger mt-2">
                                 {{ $message }}
@@ -39,7 +39,7 @@
                                 Email :
                             </label>
                             <input type="text" placeholder="Email" class="form-control" name="email"
-                                value="{{ $user->email }}" required>
+                                value="{{ $user->email }}">
                             @error('email')
                             <div class="text-danger mt-2">
                                 {{ $message }}
@@ -52,7 +52,7 @@
                                 No HP :
                             </label>
                             <input type="text" placeholder="nohp" class="form-control" name="nohp"
-                                value="{{ $user->nohp }}" required>
+                                value="{{ $user->nohp }}">
                             @error('nohp')
                             <div class="text-danger mt-2">
                                 {{ $message }}
@@ -105,7 +105,7 @@
                             </a>
                             <button type="submit" class="btn btn-sm btn-primary">
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
-                                Save
+                                Simpan
                             </button>
                         </div>
                     </form>

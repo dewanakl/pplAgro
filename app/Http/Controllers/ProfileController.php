@@ -39,6 +39,6 @@ class ProfileController extends Controller
             ]);
         }
 
-        return redirect('/profile')->with('success', 'Berhasil mengupdate akun');
+        return redirect('/profile')->with('success', 'Profil berhasil diubah');
     }
 }

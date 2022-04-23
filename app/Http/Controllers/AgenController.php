@@ -66,9 +66,9 @@ class AgenController extends Controller
         return redirect('/agen')->with('success', 'Berhasil menambahkan agen');
     }
 
-    public function destroy($id)
-    {
-        User::role('agen')->find($id)->delete();
-        return redirect('/agen')->with('success', 'Berhasil menghapus agen');
-    }
+    // public function destroy($id)
+    // {
+    //     User::role('agen')->find($id)->delete();
+    //     return redirect('/agen')->with('success', 'Berhasil menghapus agen');
+    // }
 }

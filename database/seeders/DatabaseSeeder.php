@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->createRole();
         $this->createOwner();
-        $this->createDumyAgen();
+        $this->createDummyAgen();
     }
 
     private function createRole()
@@ -27,14 +28,18 @@ class DatabaseSeeder extends Seeder
             Role::create([
                 'name' => $name
             ]);
+            DB::table('role')->insert([
+                'nama' => $name
+            ]);
         });
     }
 
-    private function createDumyAgen()
+    private function createDummyAgen()
     {
-        // dumy data agen
+        // dummy data agen
         collect([
             [
+                'idRole' => 2,
                 'name' => 'Annis Balqisa',
                 'email' => '202410101045@thempe.id',
                 'nohp' => '202410101045',
@@ -42,6 +47,7 @@ class DatabaseSeeder extends Seeder
                 'password' => '202410101045'
             ],
             [
+                'idRole' => 2,
                 'name' => 'M. Nasrul Wahabi',
                 'email' => '202410101052@thempe.id',
                 'nohp' => '202410101052',
@@ -49,6 +55,7 @@ class DatabaseSeeder extends Seeder
                 'password' => '202410101052'
             ],
             [
+                'idRole' => 2,
                 'name' => 'Adhitya Hari Saputra',
                 'email' => '202410101103@thempe.id',
                 'nohp' => '202410101103',
@@ -56,6 +63,7 @@ class DatabaseSeeder extends Seeder
                 'password' => '202410101103'
             ],
             [
+                'idRole' => 2,
                 'name' => 'Jazzy Arminta Irmadella',
                 'email' => '202410101113@thempe.id',
                 'nohp' => '202410101113',
@@ -63,6 +71,7 @@ class DatabaseSeeder extends Seeder
                 'password' => '202410101113'
             ],
             [
+                'idRole' => 2,
                 'name' => 'Dewana Kretarta Lokeswara',
                 'email' => '202410101137@thempe.id',
                 'nohp' => '202410101137',
@@ -78,6 +87,7 @@ class DatabaseSeeder extends Seeder
     {
         // insert owner
         User::create([
+            'idRole' => 1,
             'name' => 'Andriyanto',
             'email' => 'andriyanto@owner.com',
             'nohp' => '085432149322',
@@ -85,5 +95,10 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => 'andriyantoowner',
         ])->assignRole('owner');
+
+        // alamat pabrik 
+        DB::table('pabriks')->insert([
+            'alamat' => '-8.167493, 113.713525'
+        ]);
     }
 }
