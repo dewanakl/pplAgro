@@ -6,15 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="title" content="paste-it">
-    <meta name="description" content="simple paste-it">
-    <meta name="keywords" content="easy to use paste-it">
+    <meta name="title" content="thempe.id">
+    <meta name="description" content="thempe, tempe">
+    <meta name="keywords" content="thempe, tempe">
     <meta name="robots" content="index, follow, noodp">
-    <meta name="language" content="English">
     <meta name="google" content="notranslate">
-    <meta name="author" content="dkl">
-    <meta name="og:title" property="og:title" content="paste-it">
-    <meta name="og:description" property="og:description" content="paste-it simple paste">
+    <meta name="author" content="pplAgro">
+    <meta name="og:title" property="og:title" content="thempe.id">
+    <meta name="og:description" property="og:description" content="thempe, tempe">
     <meta name="og:type" property="og:type" content="website">
     <meta name="og:url" property="og:url" content="{{ env('APP_URL') }}">
     <title>{{ $title }}</title>

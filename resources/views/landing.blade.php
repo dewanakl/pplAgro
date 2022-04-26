@@ -38,7 +38,7 @@
                     </li>
                 </ul>
                 @auth
-                <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('dashboard') }}">Halaman Utama</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('halamanutama') }}">Halaman Utama</a>
                 @else
                 <a class="btn btn-outline-primary my-2 my-sm-0" href="{{ route('login') }}">Login</a>
                 @endauth

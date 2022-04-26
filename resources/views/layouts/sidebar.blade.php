@@ -5,10 +5,10 @@
         </div>
     </a>
     <hr class="sidebar-divider my-0">
-    <li class="nav-item {{ (Route::current()->uri == 'dashboard') ? 'active' : null }}">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+    <li class="nav-item {{ (Route::current()->uri == 'halamanutama') ? 'active' : null }}">
+        <a class="nav-link" href="{{ route('halamanutama') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <span>Halaman Utama</span>
         </a>
     </li>
     <hr class="sidebar-divider my-0">

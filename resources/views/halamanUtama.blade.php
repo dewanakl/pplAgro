@@ -1,12 +1,13 @@
-<x-app-layout title="Dashboard">
+<x-app-layout title="Halaman-Utama">
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item active" aria-current="page">Halaman Utama</li>
         </ol>
     </nav>
 
-    <h4 class="text-danger">{{ Auth::user()->hasRole('owner') ? 'Owner' : 'Agen' }}</h4>
+    <h3>Login as</h3>
+    <h4 class="text-danger">{{ $data->hasRole('owner') ? 'Owner' : 'Agen' }}</h4>
 
     {{-- <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">

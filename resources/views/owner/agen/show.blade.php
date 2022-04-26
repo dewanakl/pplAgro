@@ -22,7 +22,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('halamanutama') }}">Halaman Utama</a></li>
             <li class="breadcrumb-item"><a href="{{ route('agen.index') }}">Agen</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ $agen->name }}</li>
         </ol>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgenController;
+use App\Http\Controllers\HalamanUtamaController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,8 @@ Route::get('/', LandingController::class)->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
-    // dashboard
-    Route::view('/dashboard', 'halamanUtama')->name('dashboard');
+    // halaman utama
+    Route::get('/halamanutama', HalamanUtamaController::class)->name('halamanutama');
 
     // profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
