@@ -41,7 +41,7 @@
                 <div class="card">
                     <div class="row no-gutters m-l-0 m-r-0">
                         <div class="col-sm-4">
-                            <img src="{{ asset('img/undraw_profile.svg') }}" class="img-profile rounded-circle"
+                            <img src="{{ asset('img/' . $agen->foto_profil) }}" class="img-profile rounded-circle"
                                 width="300">
                         </div>
                         <div class="col-sm-8">

@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $name
             ]);
             DB::table('role')->insert([
-                'nama' => $name
+                'namaRole' => $name
             ]);
         });
     }

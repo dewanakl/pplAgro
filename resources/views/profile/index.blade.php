@@ -30,7 +30,8 @@
                 <div class="card">
                     <div class="row no-gutters m-l-0 m-r-0">
                         <div class="col-sm-4">
-                            <img src="img/undraw_profile.svg" class="img-profile rounded-circle" width="300">
+                            <img src="{{ asset('img/' . $user->foto_profil) }}" class="img-profile rounded-circle"
+                                width="300">
                         </div>
                         <div class="col-sm-8">
                             <div class="card-body">

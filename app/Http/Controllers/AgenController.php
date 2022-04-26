@@ -61,6 +61,8 @@ class AgenController extends Controller
             'password' => ['required', 'min:8'],
         ]);
 
+        $result['idRole'] = 2;
+
         User::create($result)->assignRole('agen');
 
         return redirect('/agen')->with('success', 'Berhasil menambahkan agen');
