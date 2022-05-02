@@ -1,36 +1,48 @@
-<x-app-layout title="Profile">
+<x-app-layout title="Lokasi Agen">
+    @isset($agen->alamat)
     @section('styles')
-    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
+    <style>
+        .map-container {
+            overflow: hidden;
+            padding-bottom: 50%;
+            position: relative;
+            height: 0;
+        }
+
+        .map-container iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
     @endsection
+    @endisset
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('halamanutama') }}">Halaman Utama</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            <li class="breadcrumb-item"><a href="{{ route('agen.index') }}">Agen</a></li>
+            <li class="breadcrumb-item">Lokasi</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $agen->name }}</li>
         </ol>
     </nav>
 
-    <div class="d-flex justify-content-between mb-2">
-        <div>
-            <h3 class="h3 text-dark">Profile</h3>
-        </div>
-        <div>
-            <a class="btn btn-warning btn-icon-split" href="{{ route('profile.edit') }}">
-                <span class="icon text-white-50">
-                    <i class="fas fa-edit"></i>
-                </span>
-                <span class="d-none d-md-block text">Edit</span>
-            </a>
-        </div>
-    </div>
-
+    <a class="btn btn-warning btn-icon-split" href="{{ route('agen.show', $agen->id) }}">
+        <span class="icon text-white-50">
+            <i class="fas fa-arrow-left"></i>
+        </span>
+        <span class="d-none d-md-block text">Kembali</span>
+    </a>
+    {{--
     <div class="mt-2 mb-4">
         <div class="row">
             <div class="col-xl-12 col-lg-12">
                 <div class="card">
                     <div class="row no-gutters m-l-0 m-r-0">
                         <div class="col-sm-4">
-                            <img src="{{ asset('img/' . $user->foto_profil) }}" class="img-profile rounded-circle"
+                            <img src="{{ asset('img/' . $agen->foto_profil) }}" class="img-profile rounded-circle"
                                 width="300">
                         </div>
                         <div class="col-sm-8">
@@ -43,18 +55,18 @@
                                             <i class="fas fa-user"></i>
                                             Name
                                         </p>
-                                        <h6 class="text-muted f-w-400">{{ $user->name }}</h6>
+                                        <h6 class="text-muted f-w-400">{{ $agen->name }}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">
                                             <i class="fas fa-envelope"></i>
                                             Email
                                         </p>
-                                        <h6 class="text-muted f-w-400">{{ $user->email }}</h6>
+                                        <h6 class="text-muted f-w-400">{{ $agen->email }}</h6>
                                     </div>
                                 </div>
                                 <hr>
-                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"><strong>More Information</strong>
+                                <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"><strong>Informasi Lanjut</strong>
                                 </h6>
                                 <hr>
                                 <div class="row">
@@ -63,7 +75,7 @@
                                             <i class="fas fa-mobile-alt"></i>
                                             No HP
                                         </p>
-                                        <h6 class="text-muted f-w-400">{{ $user->nohp }}</h6>
+                                        <h6 class="text-muted f-w-400">{{ $agen->nohp }}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">
@@ -71,10 +83,10 @@
                                             Alamat
                                         </p>
                                         <h6 class="text-muted f-w-400">
-                                            @isset($user->alamat)
-                                            <a href="https://maps.google.com/maps?q={{ $user->alamat }}" target="_blank"
-                                                rel="noopener noreferrer" class="btn btn-success btn-sm">
-                                                Lokasi Anda
+                                            @isset($agen->alamat)
+                                            <a href="https://maps.google.com/maps?q={{ $agen->alamat }}" target="_blank"
+                                                rel="noopener noreferrer">
+                                                {{ $agen->alamat }}
                                             </a>
                                             @else
                                             {{ 'Silahkan isi alamat untuk bertransaksi' }}
@@ -88,15 +100,11 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    @isset($agen->alamat)
+    <div id="map-container-google-1" class="z-depth-1-half map-container mb-4 mt-4" style="height: 500px">
+        <iframe src="https://maps.google.com/maps?q={{ $agen->alamat }}&ie=UTF8&output=embed" frameborder="0"
+            style="border:0" allowfullscreen></iframe>
     </div>
-
-    @section('scripts')
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-    @if (session()->has('success'))
-    <script>
-        const title = "<?= session()->get('success') ?>";
-        swal({title: title, text: "", type: "success"});
-    </script>
-    @endif
-    @endsection
+    @endisset
 </x-app-layout>

@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($password);
     }
+
+    public function pesanans()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
 }

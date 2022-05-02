@@ -17,7 +17,7 @@
             <h3 class="h3 text-dark">Daftar Pesanan</h3>
         </div>
         <div>
-            <a class="btn btn-primary btn-icon-split" href="{{ route('agen.create') }}">
+            <a class="btn btn-primary btn-icon-split" href="{{ route('agen.pesanan.create') }}">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-circle"></i>
                 </span>
@@ -37,22 +37,27 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Agen</th>
                             <th>Tanggal</th>
                             <th>Jumlah</th>
                             <th>Harga</th>
                             <th>Keterangan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $idx => $hasil)
                         <tr>
                             <td>{{ $idx + 1 }}</td>
-                            <td>{{ $hasil->name }}</td>
                             <td>{{ $hasil->tanggal_pesanan }}</td>
                             <td>{{ $hasil->jumlah_pesanan }}</td>
                             <td>{{ $hasil->harga_pesanan }}</td>
                             <td>{{ $hasil->keterangan }}</td>
+                            <td>
+                                <a href="{{ route('agen.pesanan.edit', $hasil->id) }}"
+                                    class="btn btn-warning btn-circle m-1">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

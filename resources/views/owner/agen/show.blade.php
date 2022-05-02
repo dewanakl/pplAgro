@@ -83,9 +83,9 @@
                                         </p>
                                         <h6 class="text-muted f-w-400">
                                             @isset($agen->alamat)
-                                            <a href="https://maps.google.com/maps?q={{ $agen->alamat }}" target="_blank"
-                                                rel="noopener noreferrer">
-                                                {{ $agen->alamat }}
+                                            <a href="{{ route('agen.lokasi', $agen->id) }}"
+                                                class="btn btn-success btn-sm">
+                                                Lokasi agen
                                             </a>
                                             @else
                                             {{ 'Silahkan isi alamat untuk bertransaksi' }}
@@ -100,10 +100,4 @@
             </div>
         </div>
     </div>
-    @isset($agen->alamat)
-    <div id="map-container-google-1" class="z-depth-1-half map-container mb-4" style="height: 500px">
-        <iframe src="https://maps.google.com/maps?q={{ $agen->alamat }}&ie=UTF8&output=embed" frameborder="0"
-            style="border:0" allowfullscreen></iframe>
-    </div>
-    @endisset
 </x-app-layout>

@@ -27,6 +27,11 @@ class AgenController extends Controller
         return view('owner.agen.edit', ['agen' => User::role('agen')->find($id)]);
     }
 
+    public function lokasi($id)
+    {
+        return view('owner.agen.lokasi', ['agen' => User::role('agen')->find($id)]);
+    }
+
     public function update(Request $request, $id)
     {
         $result = $request->validate([

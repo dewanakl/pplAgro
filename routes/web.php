@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgenController;
 use App\Http\Controllers\HalamanUtamaController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,17 +37,30 @@ Route::middleware('auth')->group(function () {
     // owner
     Route::middleware('role:owner')->group(function () {
 
-        Route::resource('agen', AgenController::class);
+        Route::get('/agen/lokasi/{id}', [AgenController::class, 'lokasi'])->name('agen.lokasi');
+        Route::resource('agen', AgenController::class)->except(['lokasi']);
 
+        Route::get('/ownerpesanan', [PesananController::class, 'semuaPesanan'])->name('owner.pesanan');
+
+        /**
+         * Ini belum yach
+         */
         Route::view('/keuangan', 'owner.keuangan.index')->name('keuangan');
         Route::view('/bahanbaku', 'owner.bahanbaku.index')->name('bahanbaku');
-        Route::view('/ownerpesanan', 'owner.pesanan.index')->name('owner.pesanan');
     });
 
     // agen
     Route::middleware('role:agen')->group(function () {
 
-        Route::view('/agenpesanan', 'agen.pesanan')->name('agen.pesanan');
+        Route::get('/agenpesanan', [PesananController::class, 'index'])->name('agen.pesanan');
+        Route::get('/agenpesanan/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
+        Route::post('/agenpesanan/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
+        Route::get('/agenpesanan/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
+        Route::put('/agenpesanan/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
+
+        /**
+         * Ini belum yach
+         */
         Route::view('/pembayaran', 'agen.pembayaran')->name('agen.pembayaran');
     });
 });

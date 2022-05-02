@@ -1,9 +1,9 @@
-<x-app-layout title="Tambah Agen">
+<x-app-layout title="Tambah Pesanan">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('halamanutama') }}">Halaman Utama</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('agen.index') }}">Agen</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah Agen</li>
+            <li class="breadcrumb-item"><a href="{{ route('agen.pesanan') }}">Pesanan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah</li>
         </ol>
     </nav>
 
@@ -13,77 +13,54 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">
                         <i class="fas fa-fw fa-user-cog" style="font-size:13px;"></i>
-                        Tambah Agen
+                        Tambah Pesanan
                     </h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('agen.store') }}" method="post">
+                    <form action="{{ route('agen.pesanan.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="nama">
+                            <label for="jumlah">
                                 <i class="fas fa-user fa-fw" style="font-size:13px;"></i>
-                                Nama :
+                                Jumlah :
                             </label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                value="{{ old('name') }}" placeholder="Nama">
-                            @error('name')
+                            <input type="number" name="jumlah"
+                                class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah') }}"
+                                placeholder="Jumlah">
+                            @error('jumlah')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="email">
+                            <label for="harga">
                                 <i class="fas fa-envelope fa-fw" style="font-size:13px;"></i>
-                                Email :
+                                Harga :
                             </label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{  old('email') }}" placeholder="Email">
-                            @error('email')
+                            <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
+                                value="{{  old('harga') }}" placeholder="Harga">
+                            @error('harga')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="nohp">
+                            <label for="keterangan">
                                 <i class="fas fa-mobile-alt"></i>
-                                No HP :
+                                Keterangan :
                             </label>
-                            <input type="number" class="form-control @error('nohp') is-invalid @enderror" name="nohp"
-                                value="{{ old('nohp') }}" placeholder="No HP">
-                            @error('nohp')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat">
-                                <i class="fas fa-location-arrow"></i>
-                                Alamat :
-                            </label>
-                            <input type="text" placeholder="alamat" class="form-control" name="alamat"
-                                value="{{ old('alamat') }}">
-                            @error('alamat')
-                            <div class="text-danger mt-2">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="password">
-                                <i class="fas fa-lock fa-fw" style="font-size:13px;"></i>
-                                Password :
-                            </label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" value="{{ old('password') }}" placeholder="Password">
-                            @error('password')
+                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                name="keterangan" value="{{ old('keterangan') }}" placeholder="Keterangan">
+                            @error('keterangan')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ route('agen.index') }}" class="btn btn-sm btn-secondary">
+                            <a href="{{ route('agen.pesanan') }}" class="btn btn-sm btn-secondary">
                                 <i class="fas fa-arrow-left"></i>
                                 Batal
                             </a>
                             <button type="submit" class="btn btn-sm btn-primary" id="action">
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
-                                Kirim
+                                Buat pesanan
                             </button>
                         </div>
                     </form>

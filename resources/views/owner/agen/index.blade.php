@@ -51,7 +51,7 @@
                             <td>{{ $agen->email }}</td>
                             <td>{{ $agen->nohp }}</td>
                             <td>
-                                <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-success btn-circle m-1">
+                                <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-primary btn-circle m-1">
                                     <i class="fas fa-location-arrow"></i>
                                 </a>
                                 <a href="{{ route('agen.edit', $agen->id) }}" class="btn btn-warning btn-circle m-1">

@@ -1,4 +1,4 @@
-<x-app-layout title="Halaman-Utama">
+<x-app-layout title="Halaman Utama">
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
