@@ -26,20 +26,23 @@ Route::get('/', LandingController::class)->name('welcome');
 
 Route::middleware('auth')->group(function () {
 
-    // halaman utama
+    // halaman utama ? mau di isi apa : false;
     Route::get('/halamanutama', HalamanUtamaController::class)->name('halamanutama');
 
     // profile
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])->name('profile');
+        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
 
     // owner
     Route::middleware('role:owner')->group(function () {
-
+        // agen dari owner
+        Route::resource('agen', AgenController::class);
         Route::get('/agen/lokasi/{id}', [AgenController::class, 'lokasi'])->name('agen.lokasi');
-        Route::resource('agen', AgenController::class)->except(['lokasi']);
 
+        // pesanan
         Route::get('/ownerpesanan', [PesananController::class, 'semuaPesanan'])->name('owner.pesanan');
 
         /**
@@ -51,12 +54,14 @@ Route::middleware('auth')->group(function () {
 
     // agen
     Route::middleware('role:agen')->group(function () {
-
-        Route::get('/agenpesanan', [PesananController::class, 'index'])->name('agen.pesanan');
-        Route::get('/agenpesanan/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
-        Route::post('/agenpesanan/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
-        Route::get('/agenpesanan/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
-        Route::put('/agenpesanan/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
+        // pesanan
+        Route::prefix('agenpesanan')->group(function () {
+            Route::get('/', [PesananController::class, 'index'])->name('agen.pesanan');
+            Route::get('/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
+            Route::post('/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
+            Route::get('/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
+            Route::put('/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
+        });
 
         /**
          * Ini belum yach
