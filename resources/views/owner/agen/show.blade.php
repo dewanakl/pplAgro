@@ -85,10 +85,10 @@
                                             @isset($agen->alamat)
                                             <a href="{{ route('agen.lokasi', $agen->id) }}"
                                                 class="btn btn-success btn-sm">
-                                                Lokasi agen
+                                                <i class="fas fa-location-arrow"></i> Lokasi agen
                                             </a>
                                             @else
-                                            {{ 'Silahkan isi alamat untuk bertransaksi' }}
+                                            {{ 'Agen belum ada alamat' }}
                                             @endisset
                                         </h6>
                                     </div>

@@ -6,8 +6,7 @@
         </ol>
     </nav>
 
-    <h3>Login as</h3>
-    <h4 class="text-danger">{{ $data->hasRole('owner') ? 'Owner' : 'Agen' }}</h4>
+    <h5>Hallo {{ $data->name }} sebagai {{ $data->hasRole('owner') ? 'Owner' : 'Agen' }}</h5>
 
     {{-- <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">

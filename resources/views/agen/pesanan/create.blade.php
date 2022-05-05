@@ -12,7 +12,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-fw fa-user-cog" style="font-size:13px;"></i>
+                        <i class="fas fa-info-circle"></i>
                         Tambah Pesanan
                     </h6>
                 </div>
@@ -21,7 +21,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="jumlah">
-                                <i class="fas fa-user fa-fw" style="font-size:13px;"></i>
+                                <i class="fas fa-plus-circle"></i>
                                 Jumlah :
                             </label>
                             <input type="number" name="jumlah"
@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group">
                             <label for="harga">
-                                <i class="fas fa-envelope fa-fw" style="font-size:13px;"></i>
+                                <i class="fas fa-dollar-sign"></i>
                                 Harga :
                             </label>
                             <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
@@ -44,7 +44,7 @@
                         </div>
                         <div class="form-group">
                             <label for="keterangan">
-                                <i class="fas fa-mobile-alt"></i>
+                                <i class="fas fa-exclamation-circle"></i>
                                 Keterangan :
                             </label>
                             <input type="text" class="form-control @error('keterangan') is-invalid @enderror"

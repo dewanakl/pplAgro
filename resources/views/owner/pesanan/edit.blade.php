@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('halamanutama') }}">Halaman Utama</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('agen.pesanan') }}">Pesanan</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('owner.pesanan') }}">Pesanan</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -17,7 +17,7 @@
                     </h6>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('agen.pesanan.update', $data->id) }}">
+                    <form method="post" action="{{ route('owner.pesanan.update', $data->id) }}">
                         @csrf
                         @method('put')
                         <div class="form-group">
@@ -55,7 +55,7 @@
                             @enderror
                         </div>
                         <div class="modal-footer">
-                            <a href="{{ route('agen.pesanan') }}" class="btn btn-sm btn-secondary">
+                            <a href="{{ route('owner.pesanan') }}" class="btn btn-sm btn-secondary">
                                 <i class="fas fa-arrow-left"></i>
                                 Batal
                             </a>
@@ -68,33 +68,6 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-4 order-xl-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-fw fa-exclamation-circle" style="font-size:13px;"></i>
-                        Informasi
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="mb-4">
-                        <small>
-                            <i class="fas fa-dot-circle fa-fw" style="font-size:10px;"></i>
-                            <b>
-                                Untuk mengubah informasi akun tanpa mengubah password,
-                                silahkan kosongkan password nya.
-                            </b>
-                        </small>
-                    </div>
-                    <div class="mb-4">
-                        <small>
-                            <i class="fas fa-dot-circle fa-fw" style="font-size:10px;"></i>
-                            <b>Harap hati hati dalam mengubah password !</b>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
 </x-app-layout>

@@ -12,7 +12,7 @@
 
     <div class="d-flex justify-content-between mb-2">
         <div>
-            <h3 class="h3 text-dark">Profile</h3>
+            <h4 class="h4 text-dark">Profile</h4>
         </div>
         <div>
             <a class="btn btn-warning btn-icon-split" href="{{ route('profile.edit') }}">
@@ -74,7 +74,7 @@
                                             @isset($user->alamat)
                                             <a href="https://maps.google.com/maps?q={{ $user->alamat }}" target="_blank"
                                                 rel="noopener noreferrer" class="btn btn-success btn-sm">
-                                                Lokasi Anda
+                                                <i class="fas fa-location-arrow"></i> Lokasi Anda
                                             </a>
                                             @else
                                             {{ 'Silahkan isi alamat untuk bertransaksi' }}
@@ -94,8 +94,7 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     @if (session()->has('success'))
     <script>
-        const title = "<?= session()->get('success') ?>";
-        swal({title: title, text: "", type: "success"});
+        swal({title: "{{ session()->get('success') }}", text: "", type: "success"});
     </script>
     @endif
     @endsection

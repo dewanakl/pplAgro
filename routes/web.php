@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AgenController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HalamanUtamaController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,32 +20,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// breeze auth
-require __DIR__ . '/auth.php';
+// ok let's go
 
-// we're here
 Route::get('/', LandingController::class)->name('welcome');
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+});
 
 Route::middleware('auth')->group(function () {
 
     // halaman utama ? mau di isi apa : false;
     Route::get('/halamanutama', HalamanUtamaController::class)->name('halamanutama');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-    // profile
     Route::prefix('profile')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('profile');
         Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
     });
 
-    // owner
     Route::middleware('role:owner')->group(function () {
-        // agen dari owner
-        Route::resource('agen', AgenController::class);
-        Route::get('/agen/lokasi/{id}', [AgenController::class, 'lokasi'])->name('agen.lokasi');
+        Route::resource('agen', AgenController::class)->except(['lokasi']);
+        Route::get('/agen/{id}/lokasi', [AgenController::class, 'lokasi'])->name('agen.lokasi');
 
-        // pesanan
-        Route::get('/ownerpesanan', [PesananController::class, 'semuaPesanan'])->name('owner.pesanan');
+        Route::prefix('ownerpesanan')->group(function () {
+            Route::get('/', [PesananController::class, 'owner'])->name('owner.pesanan');
+            Route::get('/{id}/edit', [PesananController::class, 'ownerEdit'])->name('owner.pesanan.edit');
+            Route::put('/{id}/update', [PesananController::class, 'ownerUpdate'])->name('owner.pesanan.update');
+            Route::get('/{id}/detail', [PesananController::class, 'ownerDetail'])->name('owner.pesanan.detail');
+        });
 
         /**
          * Ini belum yach
@@ -52,20 +59,20 @@ Route::middleware('auth')->group(function () {
         Route::view('/bahanbaku', 'owner.bahanbaku.index')->name('bahanbaku');
     });
 
-    // agen
     Route::middleware('role:agen')->group(function () {
-        // pesanan
         Route::prefix('agenpesanan')->group(function () {
-            Route::get('/', [PesananController::class, 'index'])->name('agen.pesanan');
+            Route::get('/', [PesananController::class, 'agen'])->name('agen.pesanan');
             Route::get('/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
             Route::post('/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
             Route::get('/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
             Route::put('/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
         });
-
-        /**
-         * Ini belum yach
-         */
-        Route::view('/pembayaran', 'agen.pembayaran')->name('agen.pembayaran');
+        Route::prefix('pembayaran')->group(function () {
+            Route::get('/', [PembayaranController::class, 'index'])->name('agen.pembayaran');
+            Route::get('/create', [PembayaranController::class, 'create'])->name('agen.pembayaran.create');
+            Route::post('/store', [PembayaranController::class, 'store'])->name('agen.pembayaran.store');
+            Route::get('/{id}/edit', [PembayaranController::class, 'edit'])->name('agen.pembayaran.edit');
+            Route::put('/{id}/update', [PembayaranController::class, 'update'])->name('agen.pembayaran.update');
+        });
     });
 });

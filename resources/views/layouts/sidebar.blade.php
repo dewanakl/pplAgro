@@ -5,7 +5,7 @@
         </div>
     </a>
     <hr class="sidebar-divider my-0">
-    <li class="nav-item {{ (Route::current()->uri == 'halamanutama') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('halamanutama*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('halamanutama') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Halaman Utama</span>
@@ -13,38 +13,38 @@
     </li>
     <hr class="sidebar-divider my-0">
     @role('owner')
-    <li class="nav-item {{ (Route::current()->uri == 'agen') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('agen*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('agen.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Agen</span>
         </a>
     </li>
-    <li class="nav-item {{ (Route::current()->uri == 'ownerpesanan') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('ownerpesanan*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('owner.pesanan') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Pesanan</span>
         </a>
     </li>
-    <li class="nav-item {{ (Route::current()->uri == 'keuangan') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('keuangan*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('keuangan') }}">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Keuangan</span>
         </a>
     </li>
-    <li class="nav-item {{ (Route::current()->uri == 'bahanbaku') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('bahanbaku*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('bahanbaku') }}">
             <i class="fas fa-fw fa-cog"></i>
             <span>Bahan Baku</span>
         </a>
     </li>
     @else
-    <li class="nav-item {{ (Route::current()->uri == 'agenpesanan') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('agenpesanan*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('agen.pesanan') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Pesanan</span>
         </a>
     </li>
-    <li class="nav-item {{ (Route::current()->uri == 'pembayaran') ? 'active' : null }}">
+    <li class="nav-item {{ (request()->is('pembayaran*')) ? 'active' : null }}">
         <a class="nav-link" href="{{ route('agen.pembayaran') }}">
             <i class="fas fa-fw fa-dollar-sign"></i>
             <span>Pembayaran</span>
