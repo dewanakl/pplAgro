@@ -76,10 +76,11 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label for="email">
                                     <i class="fas fa-lock fa-fw" style="font-size:13px;"></i>
-                                    New Password :
+                                    Password :
                                 </label>
-                                <input type="password" class="form-control" name="newpass">
-                                @error('newpass')
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password">
+                                @error('password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
                                 </div>
@@ -88,10 +89,12 @@
                             <div class="col-sm-6 ">
                                 <label for="email">
                                     <i class="fas fa-sync fa-fw" style="font-size:13px;"></i>
-                                    Confirm New Password :
+                                    Konfirmasi Password :
                                 </label>
-                                <input type="password" class="form-control" name="confnewpass">
-                                @error('confnewpass')
+                                <input type="password"
+                                    class="form-control @error('konfirmasi_password') is-invalid @enderror"
+                                    name="konfirmasi_password">
+                                @error('konfirmasi_password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
                                 </div>

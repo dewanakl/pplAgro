@@ -43,13 +43,13 @@ class AgenController extends Controller
 
         User::role('agen')->find($id)->update($result);
 
-        if (isset($request->newpass) && isset($request->confnewpass)) {
+        if (isset($request->password) && isset($request->konfirmasi_password)) {
             $request->validate([
-                'newpass' => ['min:7', 'required_with:confnewpass', 'same:confnewpass'],
-                'confnewpass' => ['min:7']
+                'password' => ['min:7', 'required_with:konfirmasi_password', 'same:konfirmasi_password'],
+                'konfirmasi_password' => ['min:7']
             ]);
             User::role('agen')->find($id)->update([
-                'password' => $request->confnewpass
+                'password' => $request->konfirmasi_password
             ]);
         }
 
@@ -63,7 +63,8 @@ class AgenController extends Controller
             'nohp' => ['required', 'string', 'min:3'],
             'alamat' => ['nullable', 'string', 'min:3'],
             'email' => ['required', 'unique:users,email', 'email'],
-            'password' => ['required', 'min:8'],
+            'password' => ['required', 'min:7', 'required_with:konfirmasi_password', 'same:konfirmasi_password'],
+            'konfirmasi_password' => ['required', 'min:7']
         ]);
 
         $result['idRole'] = 2;

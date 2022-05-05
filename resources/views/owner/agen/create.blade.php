@@ -65,17 +65,32 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="password">
-                                <i class="fas fa-lock fa-fw" style="font-size:13px;"></i>
-                                Password :
-                            </label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                name="password" value="{{ old('password') }}" placeholder="Password">
-                            @error('password')
-                            <span class="invalid-feedback">{{ $message }}</span>
-                            @enderror
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label for="password">
+                                    <i class="fas fa-lock fa-fw" style="font-size:13px;"></i>
+                                    Password :
+                                </label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Password">
+                                @error('password')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-sm-6 ">
+                                <label for="konfirmasi_password">
+                                    <i class="fas fa-lock fa-fw" style="font-size:13px;"></i>
+                                    Konfirmasi Password :
+                                </label>
+                                <input type="password"
+                                    class="form-control @error('konfirmasi_password') is-invalid @enderror"
+                                    name="konfirmasi_password" placeholder="konfirmasi Password">
+                                @error('konfirmasi_password')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
+
                         <div class="modal-footer">
                             <a href="{{ route('agen.index') }}" class="btn btn-sm btn-secondary">
                                 <i class="fas fa-arrow-left"></i>

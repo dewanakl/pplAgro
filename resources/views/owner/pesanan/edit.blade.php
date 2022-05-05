@@ -44,13 +44,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="keterangan">
+                            <label for="pemesanan">
                                 <i class="fas fa-exclamation-circle"></i>
-                                Keterangan :
+                                Status Pesanan :
                             </label>
-                            <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
-                                name="keterangan" value="{{$data->keterangan }}" placeholder="Keterangan">
-                            @error('keterangan')
+                            <select class="custom-select @error('pemesanan') is-invalid @enderror" name="pemesanan">
+                                <option value="{{$data->status_pesanan }}" selected>
+                                    {{$data->status_pesanan }}
+                                </option>
+                                <option value="diproses">diproses</option>
+                                <option value="dikirim">dikirim</option>
+                            </select>
+                            @error('pemesanan')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -69,5 +74,4 @@
             </div>
         </div>
     </div>
-
 </x-app-layout>

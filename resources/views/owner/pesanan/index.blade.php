@@ -91,7 +91,7 @@
                                         <td>{{ date('Y/m/d', strtotime($hasil->tanggal_pesanan)) }}</td>
                                         <td>{{ $pesanan->jumlah_pesanan }}</td>
                                         <td>Rp. {{ $pesanan->harga_pesanan }}</td>
-                                        <td>{{ $pesanan->keterangan }}</td>
+                                        <td>{{ $pesanan->status_pesanan }}</td>
                                         <td>
                                             <a href="{{ route('owner.pesanan.edit', $pesanan->id) }}"
                                                 class="btn btn-warning btn-sm">
@@ -120,17 +120,18 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success mb-1">
-                                            {{ date('Y/m/d', strtotime($pesanan->tanggal_pesanan)) }}
+                                            {{ date('Y/m/d', strtotime($pesanan->tanggal_pesanan)) }} | {{
+                                            $pesanan->nama_agen }}
                                         </div>
                                         <div class="h5 mb-0 font-weight-bold text-dark">
                                             Rp. {{ $pesanan->harga_pesanan }}
                                         </div>
-                                        <div class="h6 mb-1 font-weight-bold text-dark">
+                                        <div class="h6 mb-2 font-weight-bold text-dark">
                                             Jumlah : {{ $pesanan->jumlah_pesanan }}
                                         </div>
 
                                         <div class="text-xs mb-0 mt-1 font-weight-bold text-dark">
-                                            {{ $pesanan->nama_agen }}
+                                            {{ $pesanan->keterangan }}
                                         </div>
                                     </div>
                                 </div>

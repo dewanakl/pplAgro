@@ -37,9 +37,10 @@
                                     {{ date('Y/m/d', strtotime($pembayaran->tanggal_pesanan)) . ' - ' .
                                     $pembayaran->keterangan }}
                                 </option>
-                                @foreach (DB::table('pesanans')->get() as $pesan)
+                                @foreach ($pembayarans as $pesan)
                                 <option value="{{ $pesan->id }}">
-                                    {{ date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . ' - ' . $pesan->keterangan }}
+                                    {{ date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . ' - ' .
+                                    $pesan->keterangan }}
                                 </option>
                                 @endforeach
                                 @endisset

@@ -29,13 +29,13 @@ class ProfileController extends Controller
 
         User::find(Auth::user()->id)->update($result);
 
-        if (isset($request->newpass) && isset($request->confnewpass)) {
+        if (isset($request->password) && isset($request->konfirmasi_password)) {
             $request->validate([
-                'newpass' => ['min:7', 'required_with:confnewpass', 'same:confnewpass'],
-                'confnewpass' => ['min:7']
+                'password' => ['required', 'min:7', 'required_with:konfirmasi_password', 'same:konfirmasi_password'],
+                'konfirmasi_password' => ['required', 'min:7']
             ]);
             User::find(Auth::user()->id)->update([
-                'password' => $request->confnewpass
+                'password' => $request->konfirmasi_password
             ]);
         }
 

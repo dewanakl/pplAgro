@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PembayaranController extends Controller
@@ -12,13 +13,18 @@ class PembayaranController extends Controller
     {
         $pembayarans = DB::table('pembayarans')
             ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
+            ->join('users', 'pesanans.user_id', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
             ->select(['pembayarans.*', 'pesanans.tanggal_pesanan'])->get();
         return view('agen.pembayaran.index', ['pembayarans' => $pembayarans]);
     }
 
     public function create()
     {
-        $pemesanan = Pesanan::all();
+        $pemesanan = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+            ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
+            ->where('users.id', Auth::user()->id)->where('status_pesanans.status_pesanan', '=', 'diproses')
+            ->select(['pesanans.*'])->get();
         return view('agen.pembayaran.create', ['pemesanan' => $pemesanan]);
     }
 
@@ -27,7 +33,12 @@ class PembayaranController extends Controller
         return view('agen.pembayaran.edit', [
             'pembayaran' => DB::table('pembayarans')
                 ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
-                ->where('pembayarans.id', $id)->first()
+                ->where('pembayarans.id', $id)->first(),
+            'pembayarans' => DB::table('pembayarans')
+                ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
+                ->join('users', 'users.id', '=', 'pesanans.user_id')
+                ->where('users.id', Auth::user()->id)
+                ->where('pembayarans.id', $id)->get(['pesanans.*'])
         ]);
     }
 

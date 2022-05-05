@@ -106,7 +106,7 @@
                                         <td>{{ date('Y/m/d', strtotime($pesanan->tanggal_pesanan)) }}</td>
                                         <td>{{ $pesanan->jumlah_pesanan }}</td>
                                         <td>{{ $pesanan->harga_pesanan }}</td>
-                                        <td>{{ $pesanan->keterangan }}</td>
+                                        <td>{{ $pesanan->status_pesanan }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -134,8 +134,12 @@
                                         <div class="h5 mb-0 font-weight-bold text-dark">
                                             Rp. {{ $pesanan->harga_pesanan }}
                                         </div>
-                                        <div class="h6 mb-1 font-weight-bold text-dark">
+                                        <div class="h6 mb-2 font-weight-bold text-dark">
                                             Jumlah : {{ $pesanan->jumlah_pesanan }}
+                                        </div>
+
+                                        <div class="text-xs mb-0 mt-1 font-weight-bold text-dark">
+                                            {{ $pesanan->keterangan }}
                                         </div>
                                     </div>
                                 </div>
