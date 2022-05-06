@@ -6,6 +6,7 @@ use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
@@ -59,6 +60,11 @@ class PembayaranController extends Controller
         ];
 
         if (isset($image)) {
+            $dbimg = DB::table('pembayarans')->where('pesanan_id', $data->id)->first();
+            unlink(__DIR__ . '/../../../public/storage/posts/' . $dbimg->bukti_pembayaran);
+            Storage::delete('public/posts' . $dbimg->bukti_pembayaran);
+
+
             $image->storeAs('public/posts', $image->hashName());
             $list['bukti_pembayaran'] = $image->hashName();
         }
