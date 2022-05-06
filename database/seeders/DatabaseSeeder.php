@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Annis Balqisa',
                 'email' => '202410101045@thempe.id',
                 'nohp' => '202410101045',
-                'alamat' => '-8.167493, 113.713525',
+                'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
                 'password' => '202410101045'
             ],
             [
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'M. Nasrul Wahabi',
                 'email' => '202410101052@thempe.id',
                 'nohp' => '202410101052',
-                'alamat' => '-8.167493, 113.713525',
+                'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
                 'password' => '202410101052'
             ],
             [
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Adhitya Hari Saputra',
                 'email' => '202410101103@thempe.id',
                 'nohp' => '202410101103',
-                'alamat' => '-8.167493, 113.713525',
+                'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
                 'password' => '202410101103'
             ],
             [
@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Jazzy Arminta Irmadella',
                 'email' => '202410101113@thempe.id',
                 'nohp' => '202410101113',
-                'alamat' => '-8.167493, 113.713525',
+                'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
                 'password' => '202410101113'
             ],
             [
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Dewana Kretarta Lokeswara',
                 'email' => '202410101137@thempe.id',
                 'nohp' => '202410101137',
-                'alamat' => '-8.167493, 113.713525',
+                'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
                 'password' => '202410101137'
             ],
         ])->each(function ($data) {
@@ -91,14 +91,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Andriyanto',
             'email' => 'andriyanto@owner.com',
             'nohp' => '085432149322',
-            'alamat' => '-8.167493, 113.713525',
+            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
             'email_verified_at' => now(),
             'password' => 'andriyantoowner',
         ])->assignRole('owner');
 
         // alamat pabrik 
         DB::table('pabriks')->insert([
-            'alamat' => '-8.167493, 113.713525'
+            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121'
         ]);
     }
 }

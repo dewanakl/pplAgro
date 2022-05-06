@@ -24,7 +24,9 @@ class PembayaranController extends Controller
     {
         $pemesanan = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
+            ->join('pembayarans', 'pesanans.id', '=', 'pembayarans.pesanan_id', 'left')
             ->where('users.id', Auth::user()->id)->where('status_pesanans.status_pesanan', '=', 'diproses')
+            ->whereNull('pembayarans.bukti_pembayaran')
             ->select(['pesanans.*'])->get();
         return view('agen.pembayaran.create', ['pemesanan' => $pemesanan]);
     }

@@ -70,16 +70,16 @@
                                             <i class="fas fa-location-arrow"></i>
                                             Alamat
                                         </p>
-                                        <h6 class="text-muted f-w-400">
+                                        <div class="text-muted f-w-400">
                                             @isset($user->alamat)
                                             <a href="https://maps.google.com/maps?q={{ $user->alamat }}" target="_blank"
-                                                rel="noopener noreferrer" class="btn btn-success btn-sm">
-                                                <i class="fas fa-location-arrow"></i> Lokasi Anda
+                                                rel="noopener noreferrer">
+                                                {{ $user->alamat }}
                                             </a>
                                             @else
-                                            {{ 'Silahkan isi alamat untuk bertransaksi' }}
+                                            <h4>Silahkan isi alamat untuk bertransaksi</h4>
                                             @endisset
-                                        </h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

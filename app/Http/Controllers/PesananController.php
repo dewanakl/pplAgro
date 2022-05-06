@@ -59,7 +59,7 @@ class PesananController extends Controller
         $request->validate([
             'jumlah' => ['required', 'numeric', 'min:1'],
             'harga' => ['required', 'numeric', 'min:1'],
-            'keterangan' => ['required', 'string', 'min:3'],
+            'keterangan' => ['nullable', 'string', 'min:3'],
         ]);
 
         $data = Pesanan::create([
@@ -67,7 +67,7 @@ class PesananController extends Controller
             'tanggal_pesanan' => now(),
             'jumlah_pesanan' => $request->jumlah,
             'harga_pesanan' => $request->harga,
-            'keterangan' => $request->keterangan,
+            'keterangan' => $request->keterangan ?? '',
         ]);
 
         DB::table('status_pesanans')->insert([
@@ -138,6 +138,20 @@ class PesananController extends Controller
         ]);
     }
 
+    public function ownerDetail($id)
+    {
+        return view('owner.pesanan.detail', [
+            'data' => Pesanan::join('pembayarans', 'pesanans.id', '=', 'pembayarans.pesanan_id', 'left')
+                ->join('users', 'pesanans.user_id', '=', 'users.id')
+                ->where('pesanans.id', $id)->select([
+                    'pesanans.*',
+                    'users.name as namaagen',
+                    'users.alamat as alamatagen',
+                    'pembayarans.bukti_pembayaran'
+                ])->first()
+        ]);
+    }
+
     public function ownerUpdate(Request $request, $id)
     {
         $request->validate([
@@ -173,14 +187,5 @@ class PesananController extends Controller
         }
 
         return redirect()->route('owner.pesanan')->with('success', 'Status pesanan berhasil diubah');
-    }
-
-    public function ownerDetail($id)
-    {
-        return view('owner.pesanan.detail', [
-            'data' => Pesanan::join('pembayarans', 'pesanans.id', '=', 'pembayarans.pesanan_id', 'left')
-                ->join('users', 'pesanans.user_id', '=', 'users.id')
-                ->where('pesanans.id', $id)->select(['pesanans.*', 'users.name as namaagen', 'pembayarans.bukti_pembayaran'])->first()
-        ]);
     }
 }

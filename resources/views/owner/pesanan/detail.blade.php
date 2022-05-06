@@ -61,6 +61,14 @@
                                     disabled>
                             </div>
                             <div class="form-group">
+                                <label for="alamat">
+                                    <i class="fas fa-location-arrow"></i>
+                                    Alamat :
+                                </label>
+                                <input type="text" name="alamat" class="form-control" value="{{ $data->alamatagen }}"
+                                    disabled>
+                            </div>
+                            <div class="form-group">
                                 <label for="jumlah">
                                     <i class="fas fa-plus-circle"></i>
                                     Jumlah :
@@ -114,6 +122,14 @@
                                     Agen :
                                 </label>
                                 <input type="text" name="agen" class="form-control" value="{{ $data->namaagen }}"
+                                    disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="alamat">
+                                    <i class="fas fa-location-arrow"></i>
+                                    Alamat :
+                                </label>
+                                <input type="text" name="alamat" class="form-control" value="{{ $data->alamatagen }}"
                                     disabled>
                             </div>
                             @isset($data->bukti_pembayaran)
