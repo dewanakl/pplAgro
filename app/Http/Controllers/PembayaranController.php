@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -63,15 +64,15 @@ class PembayaranController extends Controller
 
         if (isset($image)) {
             $dbimg = DB::table('pembayarans')->where('pesanan_id', $data->id)->first();
-            unlink(__DIR__ . '/../../../public/storage/posts/' . $dbimg->bukti_pembayaran);
-            Storage::delete('public/posts' . $dbimg->bukti_pembayaran);
-
-
             $image->storeAs('public/posts', $image->hashName());
             $list['bukti_pembayaran'] = $image->hashName();
+
+
+            @unlink(__DIR__ . '/../../../public/storage/posts/' . $dbimg->bukti_pembayaran);
+            @Storage::delete('public/posts' . $dbimg->bukti_pembayaran);
         }
 
-        DB::table('pembayarans')->where('id', $id)->update($list);
+        DB::table('pembayarans')->where('pesanan_id', $id)->update($list);
 
         return redirect()->route('agen.pembayaran')->with('success', 'Berhasil mengupdate pembayaran');
     }
