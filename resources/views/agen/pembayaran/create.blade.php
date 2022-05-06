@@ -37,6 +37,7 @@
                                     {{ date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . ' - ' . $pesan->keterangan }}
                                 </option>
                                 @endforeach
+                                @endif
                             </select>
                             @error('pemesanan')
                             <span class="invalid-feedback">{{ $message }}</span>
