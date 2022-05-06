@@ -43,7 +43,6 @@
                                     $pesan->keterangan }}
                                 </option>
                                 @endforeach
-                                @endisset
                             </select>
                             @error('pemesanan')
                             <span class="invalid-feedback">{{ $message }}</span>

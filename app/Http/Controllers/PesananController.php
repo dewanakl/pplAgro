@@ -22,17 +22,23 @@ class PesananController extends Controller
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
             ->where('users.id', '=', $id)
             ->where('status_pesanans.status_pesanan', '=', 'diproses')
-            ->orderBy('pesanans.id', 'asc')->get();
+            ->orderBy('pesanans.id', 'asc')
+            ->get();
 
-        $statuspesanans = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+        $statuspesanans = DB::table('pesanans')
+            ->join('users', 'pesanans.user_id', '=', 'users.id')
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
-            ->where('users.id', $id)->where('status_pesanans.status_pesanan', '=', 'diproses')
-            ->select(['status_pesanans.*'])->get();
+            ->where('users.id', $id)
+            ->where('status_pesanans.status_pesanan', '=', 'diproses')
+            ->select(['status_pesanans.*'])
+            ->get();
 
-        $riwayatpesanans = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+        $riwayatpesanans = DB::table('pesanans')
+            ->join('users', 'pesanans.user_id', '=', 'users.id')
             ->join('riwayat_pesanans', 'pesanans.id', '=', 'riwayat_pesanans.pesanan_id')
             ->where('users.id', $id)
-            ->select(['riwayat_pesanans.*', 'pesanans.keterangan'])->get();
+            ->select(['riwayat_pesanans.*', 'pesanans.keterangan'])
+            ->get();
 
         return view('agen.pesanan.index', [
             'pesanans' => $pesanans,
@@ -50,7 +56,9 @@ class PesananController extends Controller
     {
         return view('agen.pesanan.edit', [
             'data' => Pesanan::join('users', 'pesanans.user_id', '=', 'users.id')
-                ->where('pesanans.id', $id)->select(['pesanans.*'])->first()
+                ->where('pesanans.id', $id)
+                ->select(['pesanans.*'])
+                ->first()
         ]);
     }
 
@@ -112,16 +120,21 @@ class PesananController extends Controller
         $pesanan = User::join('pesanans', 'users.id', '=', 'pesanans.user_id')
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
             ->where('status_pesanans.status_pesanan', '=', 'diproses')
-            ->orderBy('pesanans.id', 'asc')->get();
+            ->orderBy('pesanans.id', 'asc')
+            ->get();
 
-        $statuspesanan = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+        $statuspesanan = DB::table('pesanans')
+            ->join('users', 'pesanans.user_id', '=', 'users.id')
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
             ->where('status_pesanans.status_pesanan', '=', 'diproses')
-            ->select(['status_pesanans.*'])->get();
+            ->select(['status_pesanans.*'])
+            ->get();
 
-        $riwayatpesanan = DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+        $riwayatpesanan = DB::table('pesanans')
+            ->join('users', 'pesanans.user_id', '=', 'users.id')
             ->join('riwayat_pesanans', 'pesanans.id', '=', 'riwayat_pesanans.pesanan_id')
-            ->select(['riwayat_pesanans.*', 'pesanans.keterangan'])->get();
+            ->select(['riwayat_pesanans.*', 'pesanans.keterangan'])
+            ->get();
 
         return view('owner.pesanan.index', [
             'pesanan' => $pesanan,
@@ -134,7 +147,9 @@ class PesananController extends Controller
     {
         return view('owner.pesanan.edit', [
             'data' => Pesanan::join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
-                ->where('pesanans.id', $id)->select(['status_pesanans.*'])->first()
+                ->where('pesanans.id', $id)
+                ->select(['status_pesanans.*'])
+                ->first()
         ]);
     }
 
@@ -143,12 +158,14 @@ class PesananController extends Controller
         return view('owner.pesanan.detail', [
             'data' => Pesanan::join('pembayarans', 'pesanans.id', '=', 'pembayarans.pesanan_id', 'left')
                 ->join('users', 'pesanans.user_id', '=', 'users.id')
-                ->where('pesanans.id', $id)->select([
+                ->where('pesanans.id', $id)
+                ->select([
                     'pesanans.*',
                     'users.name as namaagen',
                     'users.alamat as alamatagen',
                     'pembayarans.bukti_pembayaran'
-                ])->first()
+                ])
+                ->first()
         ]);
     }
 
