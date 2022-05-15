@@ -19,6 +19,11 @@ class CreatePesanansTable extends Migration
             $table->bigInteger('jumlah_pesanan');
             $table->string('harga_pesanan');
             $table->string('keterangan', 100);
+            $table->dateTime('dibuat')->nullable();
+            $table->dateTime('dibayar')->nullable();
+            $table->dateTime('diproses')->nullable();
+            $table->dateTime('dikirim')->nullable();
+            $table->dateTime('selesai')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');

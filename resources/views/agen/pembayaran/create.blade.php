@@ -28,13 +28,17 @@
                                 @if(null !== old('pemesanan'))
                                 <?php $data = DB::table('pesanans')->where('id', old('pemesanan'))->first(); ?>
                                 <option selected value="{{ old('pemesanan') }}">
-                                    {{ date('Y/m/d', strtotime($data->tanggal_pesanan)) . ' - ' . $data->keterangan }}
+                                    ID: {{ $data->id . ' - ' . date('Y/m/d', strtotime($data->tanggal_pesanan)) . ' '
+                                    .
+                                    $data->keterangan }}
                                 </option>
                                 @else
                                 <option selected disabled>Pilih Pemesanan</option>
                                 @foreach ($pemesanan as $pesan)
                                 <option value="{{ $pesan->id }}">
-                                    {{ date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . ' - ' . $pesan->keterangan }}
+                                    ID : {{ $pesan->id . ' - ' . date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . '
+                                    ' .
+                                    $pesan->keterangan }}
                                 </option>
                                 @endforeach
                                 @endif

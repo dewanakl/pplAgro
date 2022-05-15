@@ -24,7 +24,7 @@
                                 <i class="fas fa-plus-circle"></i>
                                 Jumlah :
                             </label>
-                            <input type="number" name="jumlah"
+                            <input type="number" min="1" step="1" name="jumlah" oninput="autoNum(this)"
                                 class="form-control @error('jumlah') is-invalid @enderror" value="{{ old('jumlah') }}"
                                 placeholder="Jumlah">
                             @error('jumlah')
@@ -36,8 +36,9 @@
                                 <i class="fas fa-dollar-sign"></i>
                                 Harga :
                             </label>
-                            <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
-                                value="{{  old('harga') }}" placeholder="Harga">
+                            <input type="hidden" id="harga" name="harga" value="{{ old('harga') }}">
+                            <input type="text" id="showharga" class="form-control @error('harga') is-invalid @enderror"
+                                placeholder="Rp. 0" disabled>
                             @error('harga')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -67,25 +68,24 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-4 order-xl-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-fw fa-exclamation-circle" style="font-size:13px;"></i>
-                        Informasi
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="mb-4">
-                        <small>
-                            <i class="fas fa-dot-circle fa-fw" style="font-size:10px;"></i>
-                            <b>
-                                Daftarkan agen sesuai dengan form yang tersedia
-                            </b>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
+
+    <script>
+        const autoNum = (val) => {
+            let num = val.value * 5000;
+            let	numStr = num.toString();
+
+            let sisa = numStr.length % 3;
+            let rupiah = numStr.substr(0, sisa);
+            let ribuan = numStr.substr(sisa).match(/\d{3}/g);
+                    
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            document.getElementById("harga").value = num;
+            document.getElementById("showharga").value = 'Rp. ' + rupiah;
+        }
+    </script>
 </x-app-layout>

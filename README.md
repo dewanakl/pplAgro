@@ -8,6 +8,7 @@ Repository matakuliah pplAgro dibantu framework laravel dan bootstrap
 - cp .env.example .env
 - php artisan key:generate
 - php artisan migrate --seed
+- php artisan storage:link
 - php artisan serve
 
 ## License

@@ -34,6 +34,24 @@ class DatabaseSeeder extends Seeder
         });
     }
 
+    private function createOwner()
+    {
+        // insert owner
+        User::create([
+            'idRole' => 1,
+            'name' => 'Andriyanto',
+            'email' => 'andriyanto@owner.com',
+            'nohp' => '085432149322',
+            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
+            'password' => 'andriyantoowner',
+        ])->assignRole('owner');
+
+        // alamat pabrik 
+        DB::table('pabriks')->insert([
+            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121'
+        ]);
+    }
+
     private function createDummyAgen()
     {
         // dummy data agen
@@ -81,24 +99,5 @@ class DatabaseSeeder extends Seeder
         ])->each(function ($data) {
             User::create($data)->assignRole('agen');
         });
-    }
-
-    private function createOwner()
-    {
-        // insert owner
-        User::create([
-            'idRole' => 1,
-            'name' => 'Andriyanto',
-            'email' => 'andriyanto@owner.com',
-            'nohp' => '085432149322',
-            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121',
-            'email_verified_at' => now(),
-            'password' => 'andriyantoowner',
-        ])->assignRole('owner');
-
-        // alamat pabrik 
-        DB::table('pabriks')->insert([
-            'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121'
-        ]);
     }
 }

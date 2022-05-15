@@ -51,7 +51,7 @@
                                 <i class="fas fa-mobile-alt"></i>
                                 No HP :
                             </label>
-                            <input type="text" placeholder="nohp" class="form-control" name="nohp"
+                            <input type="number" placeholder="nohp" class="form-control" name="nohp"
                                 value="{{ $agen->nohp }}">
                             @error('nohp')
                             <div class="text-danger mt-2">

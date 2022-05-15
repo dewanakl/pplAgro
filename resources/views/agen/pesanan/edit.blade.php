@@ -25,9 +25,11 @@
                                 <i class="fas fa-plus-circle"></i>
                                 Jumlah :
                             </label>
-                            <input type="number" name="jumlah"
+                            <input type="number" min="1" step="1" name="jumlah" id="jumlah" oninput="autoNum()"
                                 class="form-control @error('jumlah') is-invalid @enderror"
-                                value="{{ $data->jumlah_pesanan }}" placeholder="Jumlah">
+                                value="{{ $data->jumlah_pesanan }}" placeholder="Jumlah" @isset($data->dibayar)
+                            disabled
+                            @endisset>
                             @error('jumlah')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -37,8 +39,9 @@
                                 <i class="fas fa-dollar-sign"></i>
                                 Harga :
                             </label>
-                            <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
-                                value="{{ $data->harga_pesanan }}" placeholder="Harga">
+                            <input type="hidden" id="harga" name="harga" value="{{ $data->harga_pesanan }}">
+                            <input type="text" id="showharga" class="form-control @error('harga') is-invalid @enderror"
+                                placeholder="Rp. 0" disabled>
                             @error('harga')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -49,7 +52,10 @@
                                 Keterangan :
                             </label>
                             <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
-                                name="keterangan" value="{{$data->keterangan }}" placeholder="Keterangan">
+                                name="keterangan" value="{{$data->keterangan }}" placeholder="Keterangan"
+                                @isset($data->dibayar)
+                            disabled
+                            @endisset>
                             @error('keterangan')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -59,7 +65,9 @@
                                 <i class="fas fa-arrow-left"></i>
                                 Batal
                             </a>
-                            <button type="submit" class="btn btn-sm btn-primary">
+                            <button type="submit" class="btn btn-sm btn-primary" @isset($data->dibayar)
+                                disabled
+                                @endisset>
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
                                 Simpan
                             </button>
@@ -68,33 +76,25 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="col-xl-4 order-xl-5">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold">
-                        <i class="fas fa-fw fa-exclamation-circle" style="font-size:13px;"></i>
-                        Informasi
-                    </h6>
-                </div>
-                <div class="card-body">
-                    <div class="mb-4">
-                        <small>
-                            <i class="fas fa-dot-circle fa-fw" style="font-size:10px;"></i>
-                            <b>
-                                Untuk mengubah informasi akun tanpa mengubah password,
-                                silahkan kosongkan password nya.
-                            </b>
-                        </small>
-                    </div>
-                    <div class="mb-4">
-                        <small>
-                            <i class="fas fa-dot-circle fa-fw" style="font-size:10px;"></i>
-                            <b>Harap hati hati dalam mengubah password !</b>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 
+    <script defer>
+        const autoNum = () => {
+            let num = document.getElementById('jumlah').value * 5000;
+            let	numStr = num.toString();
+
+            let sisa = numStr.length % 3;
+            let rupiah = numStr.substr(0, sisa);
+            let ribuan = numStr.substr(sisa).match(/\d{3}/g);
+                    
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            document.getElementById("harga").value = num;
+            document.getElementById("showharga").value = 'Rp. ' + rupiah;
+        }
+        autoNum();
+    </script>
 </x-app-layout>

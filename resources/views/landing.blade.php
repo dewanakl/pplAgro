@@ -46,7 +46,7 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container" style="margin-top: 4rem">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1 class="text-dark">Thempe.id</h1>
@@ -69,7 +69,7 @@
             </div>
         </section> --}}
 
-        <section class="mb-4" id="alamat">
+        <section class="mb-4 mt-4" id="alamat">
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="p-3 rounded mt-4 mb-4 bg-light">

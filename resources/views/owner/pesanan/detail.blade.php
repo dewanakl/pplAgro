@@ -81,8 +81,8 @@
                                     <i class="fas fa-dollar-sign"></i>
                                     Harga :
                                 </label>
-                                <input type="number" class="form-control" name="harga"
-                                    value="{{ $data->harga_pesanan }}" disabled>
+                                <input type="text" class="form-control" name="harga"
+                                    value="Rp. {{ number_format($data->harga_pesanan ,0,',','.') }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="keterangan">
@@ -138,6 +138,7 @@
                                 data-url="{{ asset('storage/posts/'. $data->bukti_pembayaran) }}">
                                 <img src="{{ asset('storage/posts/'. $data->bukti_pembayaran) }}" width="300px" />
                             </a>
+                            <p><small class="text-danger">*untuk memperbesar silahkan klik gambarnya</small></p>
                             @else
                             <h4 class="text-danger">Agen belum melakukan pembayaran</h4>
                             @endisset

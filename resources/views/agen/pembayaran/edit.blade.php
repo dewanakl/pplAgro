@@ -26,23 +26,29 @@
                                 <i class="fas fa-plus-circle"></i>
                                 Pilih pemesanan :
                             </label>
-                            <select class="custom-select @error('pemesanan') is-invalid @enderror" name="pemesanan">
+                            <select class="custom-select @error('pemesanan') is-invalid @enderror" name="pemesanan"
+                                @isset($pembayaran->diproses)
+                                disabled
+                                @endisset
+                                >
                                 @if(null !== old('pemesanan'))
                                 <?php $data = DB::table('pesanans')->where('id', old('pemesanan'))->first(); ?>
                                 <option selected value="{{ old('pemesanan') }}">
-                                    {{ date('Y/m/d', strtotime($data->tanggal_pesanan)) . ' - ' . $data->keterangan }}
+                                    ID : {{ $data->id . ' - ' . date('Y/m/d', strtotime($data->tanggal_pesanan)) . ' - '
+                                    . $data->keterangan }}
                                 </option>
                                 @else
                                 <option selected value="{{ $pembayaran->id }}">
-                                    {{ date('Y/m/d', strtotime($pembayaran->tanggal_pesanan)) . ' - ' .
+                                    ID : {{ $pembayaran->id . ' - ' . date('Y/m/d',
+                                    strtotime($pembayaran->tanggal_pesanan)) . ' - ' .
                                     $pembayaran->keterangan }}
                                 </option>
-                                @foreach ($pembayarans as $pesan)
+                                {{-- @foreach ($pembayarans as $pesan)
                                 <option value="{{ $pesan->id }}">
                                     {{ date('Y/m/d', strtotime($pesan->tanggal_pesanan)) . ' - ' .
                                     $pesan->keterangan }}
                                 </option>
-                                @endforeach
+                                @endforeach --}}
                                 @endif
                             </select>
                             @error('pemesanan')
@@ -56,7 +62,10 @@
                             </label>
                             <input type="file" accept=".png,.jpg,.jpeg"
                                 class="form-control @error('bukti_pembayaran') is-invalid @enderror"
-                                name="bukti_pembayaran">
+                                @isset($pembayaran->diproses)
+                            disabled
+                            @endisset
+                            name="bukti_pembayaran">
                             @error('bukti_pembayaran')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -66,7 +75,9 @@
                                 <i class="fas fa-arrow-left"></i>
                                 Batal
                             </a>
-                            <button type="submit" class="btn btn-sm btn-primary" id="action">
+                            <button type="submit" class="btn btn-sm btn-primary" @isset($pembayaran->diproses)
+                                disabled
+                                @endisset>
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
                                 Simpan pembayaran
                             </button>

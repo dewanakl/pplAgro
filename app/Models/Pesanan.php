@@ -15,6 +15,11 @@ class Pesanan extends Model
         'jumlah_pesanan',
         'harga_pesanan',
         'keterangan',
+        'dibuat',
+        'terbayar',
+        'diproses',
+        'terkirim',
+        'selesai',
     ];
 
     public function user()

@@ -60,7 +60,7 @@
                             <td>{{ $idx + 1 }}</td>
                             <td>{{ date('Y/m/d', strtotime($hasil->tanggal_pesanan)) }}</td>
                             <td>{{ $hasil->jumlah_pesanan }}</td>
-                            <td>{{ $hasil->harga_pesanan }}</td>
+                            <td>Rp. {{ number_format($hasil->harga_pesanan ,0,',','.') }}</td>
                             <td>
                                 <a href="javascript:;" class="addAttr" title="Klik untuk memperbesar"
                                     data-url="{{ asset('storage/posts/'. $hasil->bukti_pembayaran) }}">
@@ -78,6 +78,7 @@
                     </tbody>
                 </table>
             </div>
+            <small class="text-danger">*untuk memperbesar silahkan klik gambarnya</small>
         </div>
     </div>
 

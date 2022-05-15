@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pesanan;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +15,7 @@ class PembayaranController extends Controller
             ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
             ->join('users', 'pesanans.user_id', '=', 'users.id')
             ->where('users.id', Auth::user()->id)
+            ->whereNull('pesanans.selesai')
             ->select(['pembayarans.*', 'pesanans.tanggal_pesanan'])
             ->get();
         return view('agen.pembayaran.index', ['pembayarans' => $pembayarans]);
@@ -29,7 +28,7 @@ class PembayaranController extends Controller
             ->join('status_pesanans', 'pesanans.id', '=', 'status_pesanans.pesanan_id')
             ->join('pembayarans', 'pesanans.id', '=', 'pembayarans.pesanan_id', 'left')
             ->where('users.id', Auth::user()->id)
-            ->where('status_pesanans.status_pesanan', '=', 'diproses')
+            ->where('status_pesanans.status_pesanan', '=', 'dibuat')
             ->whereNull('pembayarans.bukti_pembayaran')
             ->select(['pesanans.*'])
             ->get();
@@ -43,12 +42,12 @@ class PembayaranController extends Controller
                 ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
                 ->where('pembayarans.id', $id)
                 ->first(),
-            'pembayarans' => DB::table('pembayarans')
-                ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
-                ->join('users', 'users.id', '=', 'pesanans.user_id')
-                ->where('users.id', Auth::user()->id)
-                ->where('pembayarans.id', $id)
-                ->get(['pesanans.*'])
+            // 'pembayarans' => DB::table('pembayarans')
+            //     ->join('pesanans', 'pembayarans.pesanan_id', '=', 'pesanans.id')
+            //     ->join('users', 'users.id', '=', 'pesanans.user_id')
+            //     ->where('users.id', Auth::user()->id)
+            //     ->where('pembayarans.id', $id)
+            //     ->get(['pesanans.*'])
         ]);
     }
 
@@ -101,6 +100,17 @@ class PembayaranController extends Controller
             'bukti_pembayaran' => $image->hashName(),
             'pesanan_id' => $request->pemesanan
         ]);
+
+        DB::table('status_pesanans')->where('pesanan_id', $data->id)->update([
+            'status_pesanan' => 'dibayar'
+        ]);
+
+        DB::table('pesanans')->join('users', 'pesanans.user_id', '=', 'users.id')
+            ->where('users.id', Auth::user()->id)
+            ->where('pesanans.id', $data->id)
+            ->update([
+                'dibayar' => now()
+            ]);
 
         return redirect()->route('agen.pembayaran')->with('success', 'Pembayaran berhasil dibuat');
     }

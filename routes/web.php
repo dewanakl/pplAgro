@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AgenController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BahanBakuController;
 use App\Http\Controllers\HalamanUtamaController;
+use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PesananController;
@@ -31,8 +33,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    // halaman utama ? mau di isi apa : false;
     Route::get('/halamanutama', HalamanUtamaController::class)->name('halamanutama');
+
+    Route::get('/status/{id}/pesanan', [PesananController::class, 'apiPesanan']);
+
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
     Route::prefix('profile')->group(function () {
@@ -52,21 +56,24 @@ Route::middleware('auth')->group(function () {
             Route::get('/{id}/detail', [PesananController::class, 'ownerDetail'])->name('owner.pesanan.detail');
         });
 
-        /**
-         * Ini belum yach
-         */
-        Route::view('/keuangan', 'owner.keuangan.index')->name('keuangan');
-        Route::view('/bahanbaku', 'owner.bahanbaku.index')->name('bahanbaku');
+        Route::get('/keuangan', [KeuanganController::class, 'index'])->name('keuangan');
+        Route::get('/keuangan/create', [KeuanganController::class, 'create'])->name('keuangan.create');
+        Route::post('/keuangan/store', [KeuanganController::class, 'store'])->name('keuangan.store');
+
+        Route::get('/bahanbaku', [BahanBakuController::class, 'index'])->name('bahanbaku');
     });
 
     Route::middleware('role:agen')->group(function () {
+
         Route::prefix('agenpesanan')->group(function () {
             Route::get('/', [PesananController::class, 'agen'])->name('agen.pesanan');
             Route::get('/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
             Route::post('/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
             Route::get('/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
             Route::put('/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
+            Route::put('/{id}/selesai', [PesananController::class, 'selesai'])->name('agen.pesanan.selesai');
         });
+
         Route::prefix('pembayaran')->group(function () {
             Route::get('/', [PembayaranController::class, 'index'])->name('agen.pembayaran');
             Route::get('/create', [PembayaranController::class, 'create'])->name('agen.pembayaran.create');
