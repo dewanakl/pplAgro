@@ -13,10 +13,16 @@
 
     <div class="d-flex justify-content-between mb-2">
         <div>
-            <h4 class="h4 text-dark">Daftar Keuangan</h4>
+            <h4 class="h4 text-dark">Keuangan</h4>
         </div>
         <div>
-            <a class="btn btn-primary btn-icon-split" href="{{ route('keuangan.create') }}">
+            <a class="btn btn-success btn-icon-split me-2" href="{{ route('keuangan.produk') }}">
+                <span class="icon text-white-50">
+                    <i class="fas fa-edit"></i>
+                </span>
+                <span class="d-none d-md-block text">Produk</span>
+            </a>
+            <a class="btn btn-primary btn-icon-split me-2" href="{{ route('keuangan.create') }}">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus-circle"></i>
                 </span>
@@ -25,10 +31,9 @@
         </div>
     </div>
 
-    <!-- Area Chart -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+            <h6 class="m-0 font-weight-bold text-dark">Grafik Keuangan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,7 +46,7 @@
 
     <div class="card shadow mb-4 mt-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-dark">Status Pesanan</h6>
+            <h6 class="m-0 font-weight-bold text-dark">Daftar Keuangan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -50,9 +55,10 @@
                         <tr>
                             <th>#</th>
                             <th>Tanggal</th>
-                            <th>Pendapatan</th>
-                            <th>Pengeluaran</th>
-                            <th>Pendapatan Bersih</th>
+                            <th>Jumlah</th>
+                            <th>Tipe</th>
+                            {{-- <th>Pendapatan Bersih</th> --}}
+                            <th>Keterangan</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
@@ -60,13 +66,17 @@
                         @foreach ($rekapkeuangan as $idx => $keuangan)
                         <tr>
                             <td>{{ $idx + 1 }}</td>
-                            <td>{{ date('Y/m/d', strtotime($keuangan->tanggal)) }}</td>
-                            <td>{{ $keuangan->pendapatan }}</td>
-                            <td>Rp. {{ $keuangan->pengeluaran }}</td>
-                            <td>{{ $keuangan->pendapatan_bersih }}</td>
+                            <td>{{ date('Y-M-d', strtotime($keuangan->tanggal)) }}</td>
+                            <td>Rp. {{ number_format($keuangan->pendapatan ?? $keuangan->pengeluaran ,0,',','.') }}
+                            </td>
+                            <td>{!! $keuangan->pengeluaran ?
+                                '<span class="badge badge-danger"><i class="fas fa-arrow-down"></i> Pengeluaran</span>'
+                                : '<span class="badge badge-success"><i class="fas fa-arrow-up"></i>
+                                    Pendapatan</span>' !!}</td>
+                            {{-- <td>Rp. {{ ($keuangan->pendapatan ?? 0) - ($keuangan->pengeluaran ?? 0) }}</td> --}}
+                            <td>{{ $keuangan->keterangan }}</td>
                             <td>
-                                <a href="{{ route('owner.pesanan.edit', $keuangan->id) }}"
-                                    class="btn btn-warning btn-sm">
+                                <a href="{{ route('keuangan.edit', $keuangan->id) }}" class="btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </td>
@@ -124,11 +134,12 @@
         var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: {!! json_encode($bulan) !!},
             datasets: [{
+                data: {{ json_encode($rekap) }},
                 label: "Pendapatan",
                 lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                backgroundColor: "rgba(78, 115, 223, 0.1)",
                 borderColor: "rgba(78, 115, 223, 1)",
                 pointRadius: 3,
                 pointBackgroundColor: "rgba(78, 115, 223, 1)",
@@ -138,7 +149,6 @@
                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                 pointHitRadius: 10,
                 pointBorderWidth: 2,         
-                data: [5000, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
             }],
         },
         options: {

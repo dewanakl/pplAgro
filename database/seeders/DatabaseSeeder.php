@@ -50,6 +50,33 @@ class DatabaseSeeder extends Seeder
         DB::table('pabriks')->insert([
             'alamat' => 'Jl. Kalimantan Tegalboto No.37, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121'
         ]);
+
+        // produk
+        DB::table('produk')->insert([
+            'nama' => 'thempe',
+            'harga' => 15000
+        ]);
+
+        // bahan baku
+        collect([
+            [
+                'namaBahanBaku' => 'Kedelai',
+                'jumlahStok' => 7000,
+                'sisaStok' => 7000
+            ],
+            [
+                'namaBahanBaku' => 'Ragi',
+                'jumlahStok' => 300,
+                'sisaStok' => 300
+            ],
+            [
+                'namaBahanBaku' => 'Plastik',
+                'jumlahStok' => 100,
+                'sisaStok' => 100
+            ],
+        ])->each(function ($data) {
+            DB::table('bahan_baku')->insert($data);
+        });
     }
 
     private function createDummyAgen()

@@ -39,47 +39,67 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-    Route::prefix('profile')->group(function () {
-        Route::get('/', [ProfileController::class, 'index'])->name('profile');
-        Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::put('/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::controller(ProfileController::class)->prefix('profile')->group(function () {
+        Route::get('/', 'index')->name('profile');
+        Route::get('/edit', 'edit')->name('profile.edit');
+        Route::put('/update', 'update')->name('profile.update');
     });
 
     Route::middleware('role:owner')->group(function () {
-        Route::resource('agen', AgenController::class)->except(['lokasi']);
-        Route::get('/agen/{id}/lokasi', [AgenController::class, 'lokasi'])->name('agen.lokasi');
 
-        Route::prefix('ownerpesanan')->group(function () {
-            Route::get('/', [PesananController::class, 'owner'])->name('owner.pesanan');
-            Route::get('/{id}/edit', [PesananController::class, 'ownerEdit'])->name('owner.pesanan.edit');
-            Route::put('/{id}/update', [PesananController::class, 'ownerUpdate'])->name('owner.pesanan.update');
-            Route::get('/{id}/detail', [PesananController::class, 'ownerDetail'])->name('owner.pesanan.detail');
+        Route::controller(AgenController::class)->prefix('agen')->name('agen.')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/{id}/show', 'show')->name('show');
+            Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}/update', 'update')->name('update');
+            Route::get('/{id}/lokasi', 'lokasi')->name('lokasi');
         });
 
-        Route::get('/keuangan', [KeuanganController::class, 'index'])->name('keuangan');
-        Route::get('/keuangan/create', [KeuanganController::class, 'create'])->name('keuangan.create');
-        Route::post('/keuangan/store', [KeuanganController::class, 'store'])->name('keuangan.store');
+        Route::controller(PesananController::class)->prefix('ownerpesanan')->name('owner.')->group(function () {
+            Route::get('/', 'owner')->name('pesanan');
+            Route::get('/{id}/edit', 'ownerEdit')->name('pesanan.edit');
+            Route::put('/{id}/update', 'ownerUpdate')->name('pesanan.update');
+            Route::get('/{id}/detail', 'ownerDetail')->name('pesanan.detail');
+        });
 
-        Route::get('/bahanbaku', [BahanBakuController::class, 'index'])->name('bahanbaku');
+        Route::controller(KeuanganController::class)->prefix('keuangan')->group(function () {
+            Route::get('/', 'index')->name('keuangan');
+            Route::get('/produk', 'produk')->name('keuangan.produk');
+            Route::get('/create', 'create')->name('keuangan.create');
+            Route::post('/store', 'store')->name('keuangan.store');
+            Route::get('/{id}/edit', 'edit')->name('keuangan.edit');
+            Route::put('/{id}/update', 'update')->name('keuangan.update');
+            Route::put('/{id}/produk', 'produkUpdate')->name('keuangan.produk.update');
+        });
+
+        Route::controller(BahanBakuController::class)->prefix('bahanbaku')->group(function () {
+            Route::get('/', 'index')->name('bahanbaku');
+            Route::get('/create', 'create')->name('bahanbaku.create');
+            Route::post('/store', 'store')->name('bahanbaku.store');
+            Route::get('/{id}/edit', 'edit')->name('bahanbaku.edit');
+            Route::put('/{id}/update', 'update')->name('bahanbaku.update');
+        });
     });
 
-    Route::middleware('role:agen')->group(function () {
+    Route::middleware('role:agen')->name('agen.')->group(function () {
 
-        Route::prefix('agenpesanan')->group(function () {
-            Route::get('/', [PesananController::class, 'agen'])->name('agen.pesanan');
-            Route::get('/create', [PesananController::class, 'create'])->name('agen.pesanan.create');
-            Route::post('/store', [PesananController::class, 'store'])->name('agen.pesanan.store');
-            Route::get('/{id}/edit', [PesananController::class, 'edit'])->name('agen.pesanan.edit');
-            Route::put('/{id}/update', [PesananController::class, 'update'])->name('agen.pesanan.update');
-            Route::put('/{id}/selesai', [PesananController::class, 'selesai'])->name('agen.pesanan.selesai');
+        Route::controller(PesananController::class)->prefix('agenpesanan')->group(function () {
+            Route::get('/', 'agen')->name('pesanan');
+            Route::get('/create', 'create')->name('pesanan.create');
+            Route::post('/store', 'store')->name('pesanan.store');
+            Route::get('/{id}/edit', 'edit')->name('pesanan.edit');
+            Route::put('/{id}/update', 'update')->name('pesanan.update');
+            Route::put('/{id}/selesai', 'selesai')->name('pesanan.selesai');
         });
 
-        Route::prefix('pembayaran')->group(function () {
-            Route::get('/', [PembayaranController::class, 'index'])->name('agen.pembayaran');
-            Route::get('/create', [PembayaranController::class, 'create'])->name('agen.pembayaran.create');
-            Route::post('/store', [PembayaranController::class, 'store'])->name('agen.pembayaran.store');
-            Route::get('/{id}/edit', [PembayaranController::class, 'edit'])->name('agen.pembayaran.edit');
-            Route::put('/{id}/update', [PembayaranController::class, 'update'])->name('agen.pembayaran.update');
+        Route::controller(PembayaranController::class)->prefix('pembayaran')->group(function () {
+            Route::get('/', 'index')->name('pembayaran');
+            Route::get('/create', 'create')->name('pembayaran.create');
+            Route::post('/store', 'store')->name('pembayaran.store');
+            Route::get('/{id}/edit', 'edit')->name('pembayaran.edit');
+            Route::put('/{id}/update', 'update')->name('pembayaran.update');
         });
     });
 });

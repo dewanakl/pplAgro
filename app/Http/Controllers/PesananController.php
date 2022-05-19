@@ -48,7 +48,9 @@ class PesananController extends Controller
 
     public function create()
     {
-        return view('agen.pesanan.create');
+        return view('agen.pesanan.create', [
+            'harga' => DB::table('produk')->where('id', 1)->first()->harga ?? 0
+        ]);
     }
 
     public function edit($id)
@@ -57,7 +59,8 @@ class PesananController extends Controller
             'data' => Pesanan::join('users', 'pesanans.user_id', '=', 'users.id')
                 ->where('pesanans.id', $id)
                 ->select(['pesanans.*'])
-                ->first()
+                ->first(),
+            'harga' => DB::table('produk')->where('id', 1)->first()->harga ?? 0
         ]);
     }
 
@@ -78,6 +81,31 @@ class PesananController extends Controller
             'dibuat' => now()
         ]);
 
+        collect(
+            DB::table('bahan_baku')->get()
+        )->each(function ($data) use ($request) {
+
+            if ($data->namaBahanBaku == 'Kedelai') {
+                $jumlah = $data->sisaStok - ($request->jumlah * 700);
+                $nama = $data->namaBahanBaku;
+            }
+
+            if ($data->namaBahanBaku == 'Ragi') {
+                $jumlah = $data->sisaStok - ($request->jumlah * 33);
+                $nama = $data->namaBahanBaku;
+            }
+
+            if ($data->namaBahanBaku == 'Plastik') {
+                $jumlah = $data->sisaStok - ($request->jumlah * 1);
+                $nama = $data->namaBahanBaku;
+            }
+
+
+            DB::table('bahan_baku')->where('namaBahanBaku', $nama)->update([
+                'sisaStok' => $jumlah
+            ]);
+        });
+
         DB::table('status_pesanans')->insert([
             'tanggal_pesanan' => now(),
             'jumlah_pesanan' => $request->jumlah,
@@ -97,6 +125,8 @@ class PesananController extends Controller
             'keterangan' => ['nullable', 'string'],
         ]);
 
+        $jumlah = Pesanan::where('id', $id)->first()->jumlah_pesanan;
+
         Pesanan::find($id)->update([
             'jumlah_pesanan' => $request->jumlah,
             'harga_pesanan' => $request->harga,
@@ -107,6 +137,40 @@ class PesananController extends Controller
             'jumlah_pesanan' => $request->jumlah,
             'harga_pesanan' => $request->harga,
         ]);
+
+        if ($request->jumlah != $jumlah) {
+            collect(
+                DB::table('bahan_baku')->get()
+            )->each(function ($data) use ($request, $jumlah) {
+
+                $result = ($jumlah < $request->jumlah) ? $request->jumlah - $jumlah : $jumlah - $request->jumlah;
+
+                if ($data->namaBahanBaku == 'Kedelai') {
+                    $jumlah = ($jumlah < $request->jumlah)
+                        ? $data->sisaStok - ($result * 700)
+                        : $data->sisaStok + ($result * 700);
+                    $nama = $data->namaBahanBaku;
+                }
+
+                if ($data->namaBahanBaku == 'Ragi') {
+                    $jumlah = ($jumlah < $request->jumlah)
+                        ? $data->sisaStok - ($result * 33)
+                        : $data->sisaStok + ($result * 33);
+                    $nama = $data->namaBahanBaku;
+                }
+
+                if ($data->namaBahanBaku == 'Plastik') {
+                    $jumlah = ($jumlah < $request->jumlah)
+                        ? $data->sisaStok - $result
+                        : $data->sisaStok + $result;
+                    $nama = $data->namaBahanBaku;
+                }
+
+                DB::table('bahan_baku')->where('namaBahanBaku', $nama)->update([
+                    'sisaStok' => $jumlah
+                ]);
+            });
+        }
 
         return redirect()->route('agen.pesanan')->with('success', 'Berhasil mengupdate pesanan');
     }
@@ -130,6 +194,7 @@ class PesananController extends Controller
             'harga_pesanan' => $data->harga_pesanan,
             'pesanan_id' => $id
         ]);
+
         return redirect()->route('agen.pesanan')->with('success', 'Pesanan Selesai');
     }
 

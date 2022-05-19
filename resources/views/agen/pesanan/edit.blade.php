@@ -25,8 +25,8 @@
                                 <i class="fas fa-plus-circle"></i>
                                 Jumlah :
                             </label>
-                            <input type="number" min="1" step="1" name="jumlah" id="jumlah" oninput="autoNum()"
-                                class="form-control @error('jumlah') is-invalid @enderror"
+                            <input type="number" min="1" step="1" max="100" name="jumlah" id="jumlah"
+                                oninput="autoNum()" class="form-control @error('jumlah') is-invalid @enderror"
                                 value="{{ $data->jumlah_pesanan }}" placeholder="Jumlah" @isset($data->dibayar)
                             disabled
                             @endisset>
@@ -80,7 +80,7 @@
 
     <script defer>
         const autoNum = () => {
-            let num = document.getElementById('jumlah').value * 5000;
+            let num = document.getElementById('jumlah').value * {{ $harga }};
             let	numStr = num.toString();
 
             let sisa = numStr.length % 3;

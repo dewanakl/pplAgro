@@ -1,9 +1,9 @@
-<x-app-layout title="Tambah Keuangan">
+<x-app-layout title="Edit Keuangan">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('halamanutama') }}">Halaman Utama</a></li>
             <li class="breadcrumb-item"><a href="{{ route('keuangan') }}">Keuangan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Tambah Keuangan</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Keuangan</li>
         </ol>
     </nav>
 
@@ -13,19 +13,20 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold">
                         <i class="fas fa-money-bill"></i>
-                        Tambah Keuangan
+                        Edit Keuangan
                     </h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('keuangan.store') }}" method="post">
+                    <form action="{{ route('keuangan.update', $data->id) }}" method="post">
                         @csrf
+                        @method('put')
                         <div class="form-group">
                             <label for="bulan">
                                 <i class="fas fa-calendar-alt"></i>
                                 Tanggal :
                             </label>
                             <input type="date" name="bulan" class="form-control @error('bulan') is-invalid @enderror"
-                                value="{{ old('bulan') }}" placeholder="Nama">
+                                value="{{ date('Y-m-d', strtotime($data->tanggal)) }}">
                             @error('bulan')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -39,6 +40,8 @@
                                 @if (old('tipe') != null)
                                 <option value="{{ old('tipe') }}">{{ old('tipe') }}</option>
                                 @endif
+                                <option value="{{ $data->pendapatan ? 'Pendapatan' : 'Pengeluaran' }}" selected>{{
+                                    $data->pendapatan ? 'Pendapatan' : 'Pengeluaran' }}</option>
                                 <option value="Pendapatan">Pendapatan</option>
                                 <option value="Pengeluaran">Pengeluaran</option>
                             </select>
@@ -53,7 +56,7 @@
                             </label>
                             <input type="number" min="1" step="1"
                                 class="form-control @error('jumlah') is-invalid @enderror" name="jumlah"
-                                value="{{ old('jumlah') }}" placeholder="Jumlah">
+                                value="{{ $data->pendapatan ?? $data->pengeluaran }}" placeholder="Jumlah">
                             @error('jumlah')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -64,7 +67,7 @@
                                 Keterangan :
                             </label>
                             <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
-                                name="keterangan" value="{{ old('keterangan') }}" placeholder="Keterangan">
+                                name="keterangan" value="{{ $data->keterangan }}" placeholder="Keterangan">
                             @error('keterangan')
                             <span class="invalid-feedback">{{ $message }}</span>
                             @enderror
