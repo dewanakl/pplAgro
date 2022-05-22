@@ -31,15 +31,16 @@ class BahanBakuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => ['required', 'string'],
+            'nama' => ['required', 'integer'],
             'jumlah' => ['required', 'integer'],
             'sisa' => ['required', 'integer']
         ]);
 
-        DB::table('bahan_baku')->insert([
-            'namaBahanBaku' => $request->nama,
-            'jumlahStok' => $request->jumlah,
-            'sisaStok' => $request->sisa
+        $old = DB::table('bahan_baku')->where('id', $request->nama)->first();
+
+        DB::table('bahan_baku')->where('id', $request->nama)->update([
+            'jumlahStok' => $old->jumlahStok + $request->jumlah,
+            'sisaStok' => $old->sisaStok + $request->sisa
         ]);
 
         return redirect()->route('bahanbaku')->with('success', 'Berhasil menambahankan bahan baku');

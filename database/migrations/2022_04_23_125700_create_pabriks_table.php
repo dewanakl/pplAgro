@@ -15,7 +15,7 @@ class CreatePabriksTable extends Migration
     {
         Schema::create('pabriks', function (Blueprint $table) {
             $table->id();
-            $table->string('alamat');
+            $table->text('alamat');
             $table->timestamps();
         });
     }

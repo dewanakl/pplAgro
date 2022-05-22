@@ -16,9 +16,9 @@ class CreateRekapKeuanganTable extends Migration
         Schema::create('rekap_keuangan', function (Blueprint $table) {
             $table->id();
             $table->dateTime('tanggal');
-            $table->integer('pendapatan')->nullable();
-            $table->integer('pengeluaran')->nullable();
-            $table->string('keterangan');
+            $table->bigInteger('pendapatan')->nullable();
+            $table->bigInteger('pengeluaran')->nullable();
+            $table->string('keterangan', 100);
 
             $table->timestamps();
         });

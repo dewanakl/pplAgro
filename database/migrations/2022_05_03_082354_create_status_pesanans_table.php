@@ -17,7 +17,7 @@ class CreateStatusPesanansTable extends Migration
             $table->id();
             $table->dateTime('tanggal_pesanan');
             $table->bigInteger('jumlah_pesanan');
-            $table->string('harga_pesanan', 50);
+            $table->bigInteger('harga_pesanan');
             $table->string('status_pesanan', 100);
             $table->timestamps();
 

@@ -16,8 +16,8 @@ class CreateBahanBakuTable extends Migration
         Schema::create('bahan_baku', function (Blueprint $table) {
             $table->id();
             $table->string('namaBahanBaku');
-            $table->string('jumlahStok');
-            $table->string('sisaStok');
+            $table->bigInteger('jumlahStok');
+            $table->bigInteger('sisaStok');
 
             $table->timestamps();
         });

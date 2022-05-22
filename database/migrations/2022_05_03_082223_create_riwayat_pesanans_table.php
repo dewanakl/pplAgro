@@ -18,7 +18,7 @@ class CreateRiwayatPesanansTable extends Migration
             $table->dateTime('tanggal_pesanan');
             $table->string('nama_agen', 50);
             $table->bigInteger('jumlah_pesanan');
-            $table->string('harga_pesanan', 20);
+            $table->bigInteger('harga_pesanan');
             $table->timestamps();
 
             $table->unsignedBigInteger('pesanan_id');
