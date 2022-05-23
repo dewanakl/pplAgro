@@ -79,7 +79,7 @@
                             </a>
                             <button type="submit" class="btn btn-sm btn-primary" id="action">
                                 <i class="fas fa-paper-plane" style="font-size:13px"></i>
-                                Kirim
+                                Simpan
                             </button>
                         </div>
                     </form>
