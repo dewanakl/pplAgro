@@ -17,7 +17,7 @@ class KeuanganController extends Controller
 
         collect(
             DB::table('rekap_keuangan')
-                ->selectRaw("DATE_TRUNC('month', tanggal) AS tgl")
+                ->selectRaw("EXTRACT(MONTH FROM tanggal) AS tgl")
                 ->selectRaw("COALESCE(SUM(pendapatan), 0) - COALESCE(SUM(pengeluaran), 0) AS rekap")
                 ->groupBy('tgl')
                 ->orderBy('tgl')
@@ -29,7 +29,7 @@ class KeuanganController extends Controller
 
         collect(
             DB::table('riwayat_pesanans')
-                ->selectRaw("DATE_TRUNC('month', tanggal_pesanan) as tgl")
+                ->selectRaw("EXTRACT(MONTH FROM tanggal_pesanan) AS tgl")
                 ->selectRaw("SUM(CAST(harga_pesanan AS INTEGER)) AS rekap")
                 ->groupBy('tgl')
                 ->orderBy('tgl')
