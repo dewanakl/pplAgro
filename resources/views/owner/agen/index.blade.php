@@ -48,9 +48,9 @@
                                     <a href="{{ route('agen.show', $agen->id) }}" class="btn btn-success btn-sm">
                                         <i class="fas fa-address-card"></i> Lihat
                                     </a>
-                                    <a href="{{ route('agen.edit', $agen->id) }}" class="btn btn-warning btn-sm">
+                                    {{-- <a href="{{ route('agen.edit', $agen->id) }}" class="btn btn-warning btn-sm">
                                         <i class="fas fa-edit"></i> Edit
-                                    </a>
+                                    </a> --}}
                                 </div>
 
                                 {{-- <a href="javascript:;" class="btn btn-danger btn-circle m-1 addAttr"
