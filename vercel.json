@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "functions": {
+        "api/*.php": {
+            "runtime": "vercel-php@0.5.2"
+        }
+    },
+    "routes": [
+        {
+            "src": "/(css|js|img|scss|vendor)/(.*)",
+            "dest": "/public/$1/$2"
+        },
+        {
+            "src": "/robots.txt",
+            "dest": "/robots.txt"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+    "env": {
+        "APP_NAME": "thempe",
+        "APP_ENV": "local",
+        "APP_KEY": "base64:tlpe0bl//gSDylPxC7vLx9h1FAmsG5G7pvKrfga/Atc=",
+        "APP_DEBUG": "true",
+        "APP_URL": "https://thempe.vercel.app/"
+    }
+}
