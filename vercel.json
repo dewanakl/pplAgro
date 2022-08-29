@@ -5,6 +5,17 @@
             "runtime": "vercel-php@0.5.2"
         }
     },
+    "headers": [
+        {
+            "source": "/(css|js|img|scss|vendor)/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=604800, must-revalidate"
+                }
+            ]
+        }
+    ],
     "routes": [
         {
             "src": "/(css|js|img|scss|vendor)/(.*)",
