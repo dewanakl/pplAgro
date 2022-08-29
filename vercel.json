@@ -21,9 +21,9 @@
     ],
     "env": {
         "APP_NAME": "thempe",
-        "APP_ENV": "local",
+        "APP_ENV": "production",
         "APP_KEY": "base64:tlpe0bl//gSDylPxC7vLx9h1FAmsG5G7pvKrfga/Atc=",
-        "APP_DEBUG": "true",
+        "APP_DEBUG": "false",
         "APP_URL": "https://thempe.vercel.app/",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
