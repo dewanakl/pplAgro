@@ -136,7 +136,7 @@
         data: {
             labels: {!! json_encode($bulan) !!},
             datasets: [{
-                data: {{ json_encode($rekap) }},
+                data: {!! json_encode($rekap) !!},
                 label: "Pendapatan",
                 lineTension: 0.3,
                 backgroundColor: "rgba(78, 115, 223, 0.1)",
